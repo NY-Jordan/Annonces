@@ -16,9 +16,11 @@ class AppController extends Controller
     {
         $categories  = Categories::showCategories();
         $heightRecentPosts = Posts::findRecentsPosts($request, 8);
+        $mostview = Posts::mostview();
         return view('home', [
             'categories' => $categories,
-            'heightRecentPosts' => $heightRecentPosts
+            'heightRecentPosts' => $heightRecentPosts,
+            'mostview' => $mostview,
         ]);
     }
     public function about()
@@ -45,8 +47,12 @@ class AppController extends Controller
             "email" => ["required"]
         ]);
        $email = $request->email;
-       \file_put_contents(Storage::url('emails_bestOffers.txt'), $email);
-       \redirect('');
+       file_put_contents('emails_bestOffers.txt', 'yvanjordannguetse@yahoo.fr');
+       return redirect('');
+    }
+    public function admin()
+    {
+        return view('admin/views/index');
     }
    
 }

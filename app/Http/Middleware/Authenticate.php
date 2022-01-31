@@ -15,6 +15,8 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
+            $value = 'you have need to login for publicate one post';
+            $request->session()->flash('message', $value);
             return route('home');
         }
     }

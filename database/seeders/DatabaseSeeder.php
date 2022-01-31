@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Location;
 use App\Models\Categories;
+use App\Models\Posts;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,8 +17,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Categories::factory(10)->create();
-        Location::factory(10)->create();
+
+        $this->call([
+            LocationSeeder::class,
+            SellerInformationsSeeder::class,
+           ImageSeeder::class,
+
+        ]);
        
     }
 }

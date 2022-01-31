@@ -18,8 +18,10 @@ class CreatePostsTable extends Migration
             $table->timestamps();
             $table->string('title');
             $table->mediumText('details');
+            $table->string('status')->default('not approved');
             $table->integer('price');
             $table->string('type');
+            $table->integer('view')->default(0);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
         });

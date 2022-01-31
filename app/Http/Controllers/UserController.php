@@ -38,7 +38,8 @@ class UserController extends Controller
                     $user->password =   isset($request->Confirm_Password) ? \password_hash($request->Confirm_Password, PASSWORD_DEFAULT) : $request->user()->password ; 
                     $this->successUpdateInformations = true;
                     $user->save();
-                    return \Redirect::route("account" );
+                    $request->session()->flash('message', 'your informations has been update');
+                    return redirect("/account" )->with('message', 'your informations has been update');
                 }               
             }
             $this->successUpdateInformations = true;

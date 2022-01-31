@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\UserController;
@@ -29,6 +30,20 @@ Route::middleware(['auth'])->group(function ()
    Route::post('/account/updateInformations', [UserController::class, 'updateInformations'])->name('updateInformations');
    Route::get('/DeletePost/{id}', [PostsController::class, 'DeletePost'])->name('DeletePost');
    Route::get('/UpdatePost/{id}', [PostsController::class, 'UpdatePage'])->name('UpdatePost');
+   Route::get('/Featured/{id}', [PostsController::class, 'featured'])->name('featured');
+   Route::get('/Featured/{amount}/{status}', [PostsController::class, 'payment'])->name('payment');
+   Route::get('/payement/status', [PostsController::class, 'status'])->name('payment.status');
+
+   //admin
+   Route::get('/account/admin', [AdminController::class, 'index'])->name('admin.index');
+   Route::get('acount/admin/add-user', [AdminController::class, 'add_user'])->name('admin.add.user');  
+   Route::get('acount/admin/delete/{id}', [AdminController::class, 'delete_user'])->name('admin.delete.user'); 
+   Route::get('acount/admin/delete/{id}', [AdminController::class, 'delete_post'])->name('admin.delete.post'); 
+   Route::get('account/unblock/{id}', [AdminController::class, 'unblock'])->name('user.unblock');
+   Route::get('account/block/{id}', [AdminController::class, 'block'])->name('user.block');
+   Route::get('account/approved/{id}', [AdminController::class, 'approved'])->name('admin.approved');
+   Route::get('account/disapproved/{id}', [AdminController::class, 'disapproved'])->name('admin.disapproved'); 
+
 });
 Route::get('post/{id}/details', [PostsController::class, 'postDetails'])->name('postDetails')->whereNumber('id');
 Route::get('{tag}/search', [PostsController::class, 'search'])->name('search');

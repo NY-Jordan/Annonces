@@ -4,7 +4,7 @@
 
             <div class="col-lg-2 col-md-2 col-sm-3">
                 <div class="logo-area">
-                    <a href="{{ route('home') }}" class="img-fluid">AnnoneCM</a>
+                    <a href="{{ route('home') }}" class="img-fluid"><img src="{{ asset('img/mon_logo.ico') }}" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-8 col-md-8 col-sm-6 possition-static">
@@ -21,11 +21,11 @@
                                                 @if (auth()->check())
                                                     <form action="{{ route("logout") }}" method="post">
                                                         @csrf
-                                                        <li><a href=""><button class="btn btn-primary" type="submit">se deconnecter</button></a></li>
+                                                        <li><a href=""><button class="btn btn-link " style="color: aliceblue; height:30px; text-decoration:none; " type="submit">se deconnecter</button></a></li>
                                                     </form>
                                                 @else
-                                                <li><a data-toggle="modal"    data-target="#myModal" href="index.html">se connecter</a></li>
-                                                <li><a href="{{ route('register') }}">s'inscrire</a></li>
+                                                    <li><a data-toggle="modal"    data-target="#myModal" href="index.html">se connecter</a></li>
+                                                    <li><a href="{{ route('register') }}">s'inscrire</a></li>
                                                 @endif
                                                 <li><a href="{{ route('addPost') }}">Poster une annonce</a></li>
                                             </ul>
@@ -36,6 +36,13 @@
                             <li><a href="{{ route('about') }} ">Qui sommes-nous ?</a></li>
 
                             <li><a href="{{ route('contact') }}">Contact</a></li>
+                            @if (Auth::check())
+                                @if (Auth::user()->status === "Admin")
+                                    <li><a href="{{ route('admin.index') }}">Admin</a></li> 
+                                @endif
+                            @endif
+                           
+                            
                         </ul>
                     </nav>
                 </div>

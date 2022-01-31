@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Posts;
-use App\Models\Categories;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 

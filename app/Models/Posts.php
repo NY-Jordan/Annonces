@@ -20,6 +20,10 @@ class Posts extends Model
     {
         return $this->hasOne(Image::class);
     }
+    public function prenium()
+    {
+        return $this->hasOne(Prenium::class);
+    }
     
     public function categories()
     {
@@ -31,7 +35,7 @@ class Posts extends Model
         return $this->belongsTo(User::class);
     }
 
-    public static function getAll(Type $var = null)
+    public static function getAll()
     {
         return Posts::all();
     }
@@ -54,10 +58,14 @@ class Posts extends Model
     public static function orderBy(String $parameter = null, $request)
     {
         if ($parameter === 'created_at' || $parameter === 'price' ) {
-            $resultRequest  = $request->orderByDesc($parameter)->paginate(6);
+            $resultRequest  = $request->orderByDesc('status')->orderByDesc($parameter)->paginate(6);
         } else {
-            $resultRequest = $request->paginate(6);
+            $resultRequest = $request->orderByDesc('status')->paginate(6);
         }
          return $resultRequest;
+    }
+    public static function mostview()
+    {
+       return  $posts = Posts::all()->sortByDesc('view');
     }
 }

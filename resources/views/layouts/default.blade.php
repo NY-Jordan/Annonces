@@ -31,8 +31,7 @@
                                 <div class="top-bar-left">
                                     <a href="{{ route('addPost') }}" class="cp-default-btn d-lg-none">Post Your Ad</a>
                                     <p class="d-none d-lg-block">
-                                        <i class="fa fa-life-ring" aria-hidden="true"></i>Have any questions? +088
-                                        199990 or mail@classipost
+                                        <i class="fa fa-life-ring" aria-hidden="true"></i>Have any questions? 697843152 or yvanjordannguetse@yahoo.fr
                                     </p>
                                 </div>
                             </div>
@@ -55,11 +54,6 @@
                                                 </form>
                                             @endif
                                         </li>
-                                        <li class="hidden-mb">
-                                            <a class="login-btn" href="#" id="login-button">
-                                                <i class="fa fa-comments-o" aria-hidden="true"></i>Live Chat
-                                            </a>
-                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -71,140 +65,12 @@
         </header>
         @yield('content')
         <footer>
-            <div class="footer-area-top s-space-equal">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                            <div class="footer-box">
-                                <h3 class="title-medium-light title-bar-left size-lg">About us</h3>
-                                <ul class="useful-link">
-                                    <li>
-                                        <a href="about.html">About us</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Career</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Terms &amp; Conditions</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Privacy Policy</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Sitemap</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                            <div class="footer-box">
-                                <h3 class="title-medium-light title-bar-left size-lg">How to sell fast</h3>
-                                <ul class="useful-link">
-                                    <li>
-                                        <a href="#">How to sell fast</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Buy Now on Classipost</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Membership</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Banner Advertising</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Promote your ad</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                            <div class="footer-box">
-                                <h3 class="title-medium-light title-bar-left size-lg">Help &amp; Support</h3>
-                                <ul class="useful-link">
-                                    <li>
-                                        <a href="#">Live Chat</a>
-                                    </li>
-                                    <li>
-                                        <a href="faq.html">FAQ</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Stay safe on classipost</a>
-                                    </li>
-                                    <li>
-                                        <a href="contact.html">Contact us</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                            <div class="footer-box">
-                                <h3 class="title-medium-light title-bar-left size-lg">Follow Us On</h3>
-                                <ul class="folow-us">
-                                    <li>
-                                        <a href="#">
-                                            <img src="../img/footer/follow1.jpg" alt="follow">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="../img/footer/follow2.jpg" alt="follow">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="social-link">
-                                    <li class="fa-classipost">
-                                        <a href="#">
-                                            <img src="../img/footer/facebook.jpg" alt="social">
-                                        </a>
-                                    </li>
-                                    <li class="tw-classipost">
-                                        <a href="#">
-                                            <img src="../img/footer/twitter.jpg" alt="social">
-                                        </a>
-                                    </li>
-                                    <li class="yo-classipost">
-                                        <a href="#">
-                                            <img src="../img/footer/youtube.jpg" alt="social">
-                                        </a>
-                                    </li>
-                                    <li class="pi-classipost">
-                                        <a href="#">
-                                            <img src="../img/footer/pinterest.jpg" alt="social">
-                                        </a>
-                                    </li>
-                                    <li class="li-classipost">
-                                        <a href="#">
-                                            <img src="../img/footer/linkedin.jpg" alt="social">
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <div class="footer-area-bottom">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-12 text-center-mb">
-                            <p>Copyright © classipost</p>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-12 text-right text-center-mb">
-                            <ul>
-                                <li>
-                                    <img src="../img/footer/card1.jpg" alt="card">
-                                </li>
-                                <li>
-                                    <img src="../img/footer/card2.jpg" alt="card">
-                                </li>
-                                <li>
-                                    <img src="../img/footer/card3.jpg" alt="card">
-                                </li>
-                                <li>
-                                    <img src="../img/footer/card4.jpg" alt="card">
-                                </li>
-                            </ul>
+                            <p>NY-ANNONCES</p>
                         </div>
                     </div>
                 </div>

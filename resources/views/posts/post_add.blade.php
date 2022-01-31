@@ -214,64 +214,42 @@
                                         <li>
                                             <div class="form-group">
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio5" value="option1"
+                                                    <input type="radio" id="inlineRadio5" name="Payement[]"  value="{{ null  }}"
                                                         name="radioInline3" checked="">
                                                     <label for="inlineRadio5">Regular List</label>
-                                                    <span>$00.00</span>
+                                                    <span>00.00 F CFA</span>
                                                 </div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="form-group">
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio6" value="option1"
+                                                    <input type="radio" id="inlineRadio6" name="Payement[]" value="urgent"
                                                         name="radioInline3">
                                                     <label for="inlineRadio6">Urgent Ad</label>
-                                                    <span>$10.00</span>
+                                                    <span>5. 000 F CFA</span>
                                                 </div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="form-group">
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio7" value="option1"
+                                                    <input type="radio" id="inlineRadio7" name="Payement[]" value="Top_of_page"
                                                         name="radioInline3">
                                                     <label for="inlineRadio7">Top of the Page Ad</label>
-                                                    <span>$10.00</span>
+                                                    <span>10.000 F CFA</span>
                                                 </div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="form-group">
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio8" value="option1"
+                                                    <input type="radio" id="inlineRadio8" name="Payement[]" value="Top_and_urgent"
                                                         name="radioInline3">
                                                     <label for="inlineRadio8">Top of the Page Ad + Urgent Ad</label>
-                                                    <span>$15.00</span>
+                                                    <span>15.000 F CFA</span>
                                                 </div>
                                             </div>
-                                        </li>
-                                    </ul>
-                                    <ul class="select-payment-method mt-20">
-                                        <li>
-                                            <div class="form-group">
-                                                <div class="custom-select">
-                                                    <select id="card" class='select2'>
-                                                        <option value="0">Select Payment Method</option>
-                                                        <option value="1">Paypal</option>
-                                                        <option value="2">Master Card</option>
-                                                        <option value="3">Visa Card</option>
-                                                        <option value="4">Scrill</option>
-                                                    </select>
-                                                </div>
-                                                <div class="checkbox checkbox-primary checkbox-circle">
-                                                    <input id="checkbox3" type="checkbox" checked="">
-                                                    <label for="checkbox3">Remember above contact information.</label>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <h3>Total Payable: <span>$10</span></h3>
                                         </li>
                                     </ul>
                                     <div class="form-group mt-20">
