@@ -95,7 +95,12 @@
                                                 <p>Eimply dummy text of the printing and typesetting industrym has been
                                                     the
                                                     industry's standard dummy.</p>
-                                                <div class="price">{{ $post->price }}</div>
+                                                <div class="price">{{ $post->price }} F cfa</div>
+                                                @if (isset($post->prenium->status))
+                                                <span style="background-color:<?= $post->prenium->status == 'Urgent' ? 'red' : 'green' ?> ; border-radius:10px; color: white; margin:auto; margin-top:10px; width:70px;   height:auto;">
+                                                    {{ $post->prenium->status }}
+                                                </span>
+                                            @endif
                                                 <a href="{{ route('postDetails', $post->id) }}"
                                                     class="product-details-btn">Details</a>
                                             </div>

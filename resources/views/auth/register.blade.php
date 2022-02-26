@@ -30,7 +30,7 @@
                                     </div>
                                     <div class="col-sm-9 col-12">
                                         <div class="form-group">
-                                            <input type="text" id="first_name" name="first_name" class="form-control"
+                                            <input type="text" id="first_name" value='{{ old('first_name') }}' name="first_name" class="form-control"
                                                 placeholder="First Name">
                                         </div>
                                     </div>
@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="col-sm-9 col-12">
                                         <div class="form-group">
-                                            <input type="text" id="last_name" name="last_name" class="form-control"
+                                            <input type="text" id="last_name" value='{{ old('last_name') }}' name="last_name" class="form-control"
                                                 placeholder="Last Name">
                                         </div>
                                     </div>
@@ -125,7 +125,7 @@
                                             <textarea placeholder="Write here something about you"
                                                 class="textarea form-control" name="about_yourself" id="form-message1"
                                                 rows="4" cols="20" data-error="Message field is required"
-                                                required></textarea>
+                                                required>{{ old('about_yourself') }}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -135,7 +135,7 @@
                                     </div>
                                     <div class="col-sm-9 col-12">
                                         <div class="form-group">
-                                            <input type="text" id="first-name2" name="email" class="form-control"
+                                            <input type="text" id="first-name2" value="{{ old('email') }}" name="email" class="form-control"
                                                 placeholder="Enter your e-mail here . . .">
                                         </div>
                                     </div>

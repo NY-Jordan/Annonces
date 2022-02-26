@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Posts;
 use App\Models\Location;
+use App\Models\Prenium;
 use App\Models\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,12 +16,23 @@ class AppController extends Controller
     public function home(Request $request)
     {
         $categories  = Categories::showCategories();
+        $prenium = [];
+        $idprenium  = [];
+        $p  = prenium::where('status', 'Top of page')->orWhere('status', 'Top of page + Urgent')->get();
+        foreach ($p as $key => $value) {
+            $idprenium[] = $value->posts_id;
+        }        
+        foreach (Posts::all() as $key => $value) {
+            if (in_array($value->id, $idprenium)) {
+                $prenium[] = $value;
+            }
+
+        }
         $heightRecentPosts = Posts::findRecentsPosts($request, 8);
-        $mostview = Posts::mostview();
         return view('home', [
             'categories' => $categories,
             'heightRecentPosts' => $heightRecentPosts,
-            'mostview' => $mostview,
+            'prenium' => $prenium,
         ]);
     }
     public function about()

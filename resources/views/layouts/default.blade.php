@@ -29,7 +29,7 @@
                         <div class="row no-gutters">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                                 <div class="top-bar-left">
-                                    <a href="{{ route('addPost') }}" class="cp-default-btn d-lg-none">Post Your Ad</a>
+                                    <a href="{{ route('addPostPrenium') }}" class="cp-default-btn d-lg-none">Post Your Ad</a>
                                     <p class="d-none d-lg-block">
                                         <i class="fa fa-life-ring" aria-hidden="true"></i>Have any questions? 697843152 or yvanjordannguetse@yahoo.fr
                                     </p>

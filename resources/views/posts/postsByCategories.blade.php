@@ -75,7 +75,9 @@
                                                             src="img/banner/symbol-featured.png"
                                                             alt="symbol" class="img-fluid"> </div>
                                                 </div>
+                                                
                                             </div>
+                                            
                                             <div class="item-content">
                                                 <div class="title-ctg">{{ $post->categories->categoryName }}</div>
                                                 <h3 class="short-title"><a
@@ -93,6 +95,11 @@
                                                 </ul>
                                                 <p>{{ substr($post->details, 0, 100).'...'  }}</p>
                                                 <div class="price">{{ $post->price }} Fcfa</div>
+                                                @if (isset($post->prenium->status))
+                                                <span style="background-color:<?= $post->prenium->status == 'Urgent' ? 'red' : 'green' ?> ; border-radius:10px; color: white; margin:auto; margin-top:10px; width:70px;   height:auto;">
+                                                    {{ $post->prenium->status }}
+                                                </span>
+                                            @endif
                                                 <a href="{{ route("postDetails", [ 'id' => $post->id])  }}"
                                                     class="product-details-btn">Details</a>
                                             </div>

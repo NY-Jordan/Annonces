@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->string('status')->default('not approved');
             $table->integer('price');
             $table->string('type');
+            $table->integer('priority')->default(0);
             $table->integer('view')->default(0);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');

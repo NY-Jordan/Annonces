@@ -16,13 +16,25 @@ use App\Http\Controllers\CategoriesController;
 
 class PostsController extends Controller
 {
-    public function addPost(Request $request)
+    public function add_prenium_post(Request $request)
     {
         $locations = Location::getAllLocations();
 
         $categories  = Categories::showCategories();
         $user = $request->user();
-        return view('posts/post_add', [
+        return view('posts/add_post_prenium', [
+            'categories' => $categories,
+            'user' => $user,
+            'locations' => $locations
+        ]);
+    }
+    public function add_free_post(Request $request)
+    {
+        $locations = Location::getAllLocations();
+
+        $categories  = Categories::showCategories();
+        $user = $request->user();
+        return view('posts/add_free_post', [
             'categories' => $categories,
             'user' => $user,
             'locations' => $locations
@@ -168,25 +180,30 @@ class PostsController extends Controller
  
         } elseif ($tag === 'moreDetails') {
             
-            $request->validate([
-                "KeyWord" => ["min:5, 'required"],
-                "location" => ['required'],
-                "category" => ['required'],
-            ]);
-            $KeyWord = $request->KeyWord;
-            $location = $request->location;
-            $category = $request->category;
-            $byKeyword = Posts::where('title', 'like', "%$KeyWord%")->orWhere('details', 'like', "%$KeyWord%");
-            $ByLocation = $byKeyword->with('user.sellerInformations.location')->whereHas('user.sellerInformations.location',  function  ($q)  Use ($location) {
-                $q->where('id',  $location);
-            });
-            $byCategorie = $ByLocation->where('category_id', (int)$category);
-            $result = Posts::orderBy($request->q, $byCategorie);      
+            $KeyWord = $request->KeyWord ?? '';
+            $location = $request->location ?? '';
+            $category = $request->category ?? '';
+            $result  = new Posts();
+            if (isset($KeyWord) && !empty($KeyWord)) {
+                $result = $result->where('title', 'like', "%$KeyWord%")->orWhere('details', 'like', "%$KeyWord%");
+            }
+            if (isset($location) && !empty($location)) {
+                $result = $result->with('user.sellerInformations.location')->whereHas('user.sellerInformations.location',  function  ($q)  Use ($location) {
+                    $q->where('id',  (int)$location);
+                });
+            }
+            if (isset($category) && !empty($category)) {
+                $result = $result->where('category_id', (int)$category);
+            }
+            
+            
+            $result = Posts::orderBy($request->q, $result);      
             return view('search', [
                             'result' => $result,
                             'categories' => $categories,
                             'KeyWord' => $KeyWord,
-                            'locations' => $locations
+                            'locations' => $locations,
+                            'data' => $request->query()
                         ]);
         } else {
             abort('404');
@@ -278,13 +295,22 @@ class PostsController extends Controller
         
         $post = Posts::where('id', $post_id)->first();
         if ($response->json()['status'] === "SUCCESSFUL") {
-            $post->status = $status;
+            $prenium =  new Prenium();
+            $prenium->id_posts =  $post->id;
+            $prenium->status =  $status;
+            if ($status === 'Urgent') {
+                $post->priority = 15;
+            }
+            if ($status === 'Top of page') {
+                $post->priority = 30;
+            }
             $post->save();
+            $prenium->save();
             $request->session()->forget('status');
             $request->session()->forget('id');
             return redirect("post/{$post_id}/details")->with('message', 'purchase of points successful !!');
         } elseif ($response->json()['status'] === "FAILED") {
-            return redirect("post/{$post_id}/details")->with('message', "check the amount of your balance  and try again");
+            return redirect("/account")->with('message', "check the amount of your balance  and try again");
         }
     }
 

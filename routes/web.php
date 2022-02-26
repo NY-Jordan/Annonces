@@ -24,7 +24,8 @@ Route::get('/contact', [AppController::class, 'contact'])->name('contact');
 
 Route::middleware(['auth'])->group(function ()
 {
-   Route::get('/addPost', [PostsController::class, 'addPost'])->name('addPost');
+   Route::get('/add_prenium_post', [PostsController::class, 'add_prenium_post'])->name('addPostPrenium');
+   Route::get('/add_free_Post', [PostsController::class, 'add_free_Post'])->name('addPostFree');
    Route::post('/sendpost', [PostsController::class, 'sendPost'])->name('sendPost');
    Route::get('/account', [UserController::class, 'account'])->name('account');
    Route::post('/account/updateInformations', [UserController::class, 'updateInformations'])->name('updateInformations');

@@ -27,7 +27,7 @@
                                                     <li><a data-toggle="modal"    data-target="#myModal" href="index.html">se connecter</a></li>
                                                     <li><a href="{{ route('register') }}">s'inscrire</a></li>
                                                 @endif
-                                                <li><a href="{{ route('addPost') }}">Poster une annonce</a></li>
+                                                <li><a href="{{ route('addPostPrenium') }}">Poster une annonce</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-3 text-right">
-                <a href="{{ route('addPost') }}" class="cp-default-btn">Post Your Ad</a>
+                <a href="{{ route('addPostPrenium') }}" class="cp-default-btn">Post Your Ad</a>
             </div>
         </div>
     </div>

@@ -47,22 +47,23 @@ class Posts extends Model
 
     public static function findRecentsPostsByUser(Request $request, int $id, $number)
     {
-        return Posts::where('user_id', $id)->orderByDesc('updated_at')->take($number)->get(); 
+        return Posts::where('user_id', $id)->orderByDesc('priority')->take($number)->get(); 
     }
 
     public static function findRecentsPosts(Request $request, int $number)
     {
-        return Posts::all()->sortByDesc('id')->take($number); 
+        $posts =  Posts::all()->sortByDesc('created_at')->take($number); 
+        return $posts->sortByDesc('priority');
     }
 
     public static function orderBy(String $parameter = null, $request)
     {
         if ($parameter === 'created_at' || $parameter === 'price' ) {
-            $resultRequest  = $request->orderByDesc('status')->orderByDesc($parameter)->paginate(6);
+            $resultRequest  = $request->orderByDesc('created_at')->orderByDesc($parameter);
         } else {
-            $resultRequest = $request->orderByDesc('status')->paginate(6);
+            $resultRequest = $request->orderByDesc('created_at');
         }
-         return $resultRequest;
+         return $resultRequest->orderByDesc('priority')->paginate(6);
     }
     public static function mostview()
     {

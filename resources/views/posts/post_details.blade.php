@@ -150,7 +150,7 @@
                         </div>
                         <div class="col-lg-5 col-md-12 col-sm-12 col-12">
                             <div class="add-layout2-right d-flex align-items-center justify-content-end mb--sm">
-                                <a href="{{ route('addPost') }}" class="cp-default-btn-sm-primary">Post Your Ad Now!</a>
+                                <a href="{{ route('addPostPrenium') }}" class="cp-default-btn-sm-primary">Post Your Ad Now!</a>
                             </div>
                         </div>
                     </div>

@@ -30,9 +30,8 @@
                                             <div class="page-controls-sorting">
                                                 <button class="sorting-btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Sort By<i class="fa fa-sort" aria-hidden="true"></i></button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="#">Date</a>
-                                                    <a class="dropdown-item" href="#">Best Sale</a>
-                                                    <a class="dropdown-item" href="#">Rating</a>
+                                                    <a class="dropdown-item" href="search?location={{ $data['location']}}&category={{ $data['category'] }}&KeyWord={{ $data['KeyWord'] }}&q=created_at">Date</a>
+                                                    <a class="dropdown-item" href="search?location={{ $data['location']}}&category={{ $data['category'] }}&KeyWord={{ $data['KeyWord'] }}&q=price">Best Sale</a>
                                                 </div>
                                             </div>
                                         </li>
@@ -58,15 +57,16 @@
                                                 <li><a href="single-product-layout1.html"><i class="fa fa-link" aria-hidden="true"></i></a></li>
                                             </ul>
                                             <div class="symbol-featured"><img src="{{ Storage::url($post->image->path) }}" alt="symbol" class="img-fluid"> </div>
-                                            @if($post->status === 'urgent')
-                                            <div style="background-color: red; border-radius:10px; margin-top:10px; width:70px;   height:auto;"> Urgent !!</div>
-                                        @endif
+                                            @if (isset($post->prenium->status))
+                                                <div style="background-color:<?= $post->prenium->status == 'Urgent' ? 'red' : 'green' ?> ; border-radius:10px; color: white; margin-top:10px; width:70px;   height:auto;">
+                                                    {{ $post->prenium->status }}
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="item-content">
-                                        <div class="title-ctg">Clothing</div>
-                                        <h3 class="short-title"><a href="">Cotton
-                                                T-Shirt</a></h3>
+                                        <div class="title-ctg">{{ $post->categories->categoryName }}</div>
+                                        <h3 class="short-title"><a href="">{{ $post->title }}</a></h3>
                                         <h3 class="long-title"><a href="{{ route('postDetails', $post->id) }}">{{ $post->title }}</a>
                                         </h3>
                                         <ul class="upload-info">
@@ -91,18 +91,16 @@
                     </div>
                 </div>
                 <div class="gradient-wrapper mb-60">
-                    <ul class="cp-pagination">
-                        <li class="disabled"><a href="#"><i class="fa fa-angle-double-left" aria-hidden="true"></i>Previous</a></li>
-                        <li class="active"><a href="">1</a></li>
-                        <li><a href="#">Next<i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
-                    </ul>
+                    
+                        {{ $result->links() }}
+                   
                 </div>
                 <div class="row no-gutters">
                     <div class="col-lg-7 col-md-7 col-sm-12 col-12">
                         <div class="add-layout2-left d-flex align-items-center">
                             <div>
                                 <h2>Do you Have Something To Sell?</h2>
-                                <h3>Post your ad on classipost.com</h3>
+                                <h3>Post your ad on NY-ANNONCES</h3>
                             </div>
                         </div>
                     </div>
