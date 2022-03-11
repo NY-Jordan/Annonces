@@ -4,7 +4,7 @@
 
             <div class="col-lg-2 col-md-2 col-sm-3">
                 <div class="logo-area">
-                    <a href="{{ route('home') }}" class="img-fluid"><img src="{{ asset('img/mon_logo.ico') }}" alt=""></a>
+                    <a href="{{ route('home') }}" class="img-fluid"><img src="{{ asset('img/log.png') }}" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-8 col-md-8 col-sm-6 possition-static">
@@ -33,8 +33,6 @@
                                     </div>
                                 </div>
                             </li>
-                            <li><a href="{{ route('about') }} ">Qui sommes-nous ?</a></li>
-
                             <li><a href="{{ route('contact') }}">Contact</a></li>
                             @if (Auth::check())
                                 @if (Auth::user()->status === "Admin")

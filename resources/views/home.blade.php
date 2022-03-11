@@ -118,9 +118,10 @@
                             @foreach ($categories as $category)
                                 <li>
                                     <a href="{{ route('PostsByCategory', $category->id) }}"><img
-                                            src="../img/product/ctg1.png" alt="category"
-                                            class="img-fluid"><?= $category->categoryName ?><span>({{ $category->posts->count() }})</span></a>
+                                            src="../img/product/ctg{{ $category->id }}.png" alt="category"
+                                            class="img-fluid"><?= $category->categoryName ?><span>({{ $category->number_posts($category->id) }})</span></a>
                                 </li>
+                                
                             @endforeach
                         </ul>
                     </div>

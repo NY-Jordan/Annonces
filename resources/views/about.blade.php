@@ -42,20 +42,13 @@
                     <div class="sidebar-item-box">
                         <ul class="sidebar-more-option">
                             <li>
-                                <a href="post-ad.html"><img src="img/banner/more1.png" alt="more" class="img-fluid">Post a
+                                <a href="{{ route('addPostFree') }}"><img src="img/banner/more1.png" alt="more" class="img-fluid">Post a
                                     Free Ad</a>
                             </li>
                             <li>
-                                <a href="#"><img src="img/banner/more2.png" alt="more" class="img-fluid">Manage Product</a>
-                            </li>
-                            <li>
-                                <a href="favourite-ad-list.html"><img src="img/banner/more3.png" alt="more"
-                                        class="img-fluid">Favorite Ad list</a>
+                                <a href="{{ route('account') }}"><img src="img/banner/more2.png" alt="more" class="img-fluid">Manage Product</a>
                             </li>
                         </ul>
-                    </div>
-                    <div class="sidebar-item-box">
-                        <img src="img/banner/sidebar-banner1.jpg" alt="banner" class="img-fluid m-auto">
                     </div>
                 </div>
             </div>

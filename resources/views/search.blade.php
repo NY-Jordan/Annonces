@@ -30,8 +30,8 @@
                                             <div class="page-controls-sorting">
                                                 <button class="sorting-btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Sort By<i class="fa fa-sort" aria-hidden="true"></i></button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="search?location={{ $data['location']}}&category={{ $data['category'] }}&KeyWord={{ $data['KeyWord'] }}&q=created_at">Date</a>
-                                                    <a class="dropdown-item" href="search?location={{ $data['location']}}&category={{ $data['category'] }}&KeyWord={{ $data['KeyWord'] }}&q=price">Best Sale</a>
+                                                    <a class="dropdown-item" href="search?@foreach ($data as $key => $item){{ $key.'='.$item.'&' }}@endforeach{{ '?q=created_at' }}">Date</a>
+                                                    <a class="dropdown-item" href="search?@foreach ($data as $key => $item){{ $key.'='.$item.'&' }}@endforeach{{ '?q=price' }}">Best Sale</a>
                                                 </div>
                                             </div>
                                         </li>

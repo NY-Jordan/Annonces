@@ -224,7 +224,7 @@
                                         <li>
                                             <div class="form-group">
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio6" name="Payement[]" value="urgent"
+                                                    <input type="radio" id="inlineRadio6" name="Payement[]" value="Urgent"
                                                         name="radioInline3">
                                                     <label for="inlineRadio6">Urgent Ad</label>
                                                     <span>5. 000 F CFA</span>
@@ -234,7 +234,7 @@
                                         <li>
                                             <div class="form-group">
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio7" name="Payement[]" value="Top_of_page"
+                                                    <input type="radio" id="inlineRadio7" name="Payement[]" value="Top of page"
                                                         name="radioInline3">
                                                     <label for="inlineRadio7">Top of the Page Ad</label>
                                                     <span>10.000 F CFA</span>
@@ -244,7 +244,7 @@
                                         <li>
                                             <div class="form-group">
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio8" name="Payement[]" value="Top_and_urgent"
+                                                    <input type="radio" id="inlineRadio8" name="Payement[]" value="Top of page + Urgent"
                                                         name="radioInline3">
                                                     <label for="inlineRadio8">Top of the Page Ad + Urgent Ad</label>
                                                     <span>15.000 F CFA</span>
@@ -257,25 +257,6 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-12 col-sm-12 col-12">
-                    <div class="sidebar-item-box">
-                        <img src="img/banner/sidebar-banner1.jpg" alt="banner" class="img-fluid m-auto">
-                    </div>
-                    <div class="sidebar-item-box">
-                        <div class="gradient-wrapper">
-                            <div class="gradient-title">
-                                <h3>How To Sell Quickly?</h3>
-                            </div>
-                            <ul class="sidebar-sell-quickly">
-                                <li><a href="faq.html">Use a brief title and description of the item.</a></li>
-                                <li><a href="faq.html">Make sure you post in the correct category</a></li>
-                                <li><a href="faq.html">Add nice photos to your ad</a></li>
-                                <li><a href="faq.html">Put a reasonable price</a></li>
-                                <li><a href="faq.html">Check the item before publish</a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>

@@ -13,6 +13,10 @@ class Categories extends Model
     {
         return $this->hasMany(Posts::class, 'category_id');
     }
+    public function number_posts($id)
+    {
+        return Posts::where('status', 'approved')->where('category_id', $id)->count();
+    }
 
     public static  function showCategories()
     {

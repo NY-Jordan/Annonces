@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Posts;
+use App\Models\Payment;
 use App\Models\SellerInformations;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -52,5 +53,9 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany(Posts::class);
+    }
+    public function payment()
+    {
+        return $this->hasMany(Payment::class);
     }
 }

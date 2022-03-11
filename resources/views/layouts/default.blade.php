@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>ClassiPost | Home 4</title>
+    <title>NY-ANNONCES  </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.png">
@@ -47,8 +47,7 @@
                                             @else
                                                 <form action="{{ route('logout') }}" method="post">
                                                     @csrf
-                                                    <button type="submit" class="login-btn" data-toggle="modal"
-                                                    data-target="#myModal">
+                                                    <button type="submit" class="login-btn">
                                                     <i class="fa fa-lock" aria-hidden="true"></i>Logout
                                                     </button>
                                                 </form>
@@ -99,7 +98,7 @@
                                 <label for="checkbox1">Remember Me</label>
                             </div>
                             <button class="default-big-btn" type="submit" value="Login">Login</button>
-                            <button class="default-big-btn form-cancel" type="submit" value="">Cancel</button>
+                            <button class="default-big-btn form-cancel" data-dismiss="modal" type="submit" value="">Cancel</button>
                             <label class="lost-password"><a href="{{ route('password.request') }}">Lost your
                                     password?</a></label>
                         </form>

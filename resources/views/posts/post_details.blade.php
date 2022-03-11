@@ -25,7 +25,7 @@
                                         <div class="tab-content">
                                             <span class="price">{{ $post->price }}CFA</span>
                                             @foreach ($imagesPost as $key => $image)
-                                                <div role="tabpanel"
+                                                <div role="tabpane{{ $key }}"
                                                     class="tab-pane  fade <?= $r = $key === 0 ? 'in active' : ' ' ?>  show"
                                                     id="related{{ $key }}">
                                                     <a href="#" class="zoom ex1">
@@ -48,7 +48,7 @@
                                             data-r-Large-nav="true" data-r-Large-dots="false">
                                             @foreach ($imagesPost as $key => $image)
                                                 <li class="nav-item">
-                                                    <a class="active" href="#related{{ $key }}"
+                                                    <a  @if ($key === 0)  class="active" @endif href="#related{{ $key }}"
                                                         data-toggle="tab" aria-expanded="false"><img
                                                             alt="related{{ $key }}"
                                                             src="{{ Storage::url($image->path) }}"
@@ -232,40 +232,6 @@
                                         </li>
                                     @endif
                                 @endif
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="sidebar-item-box">
-                        <div class="gradient-wrapper">
-                            <div class="gradient-title">
-                                <h3>Item Details</h3>
-                            </div>
-                            <ul class="sidebar-item-details">
-                                <li>Condition:<span>New</span></li>
-                                <li>Brand:<span>Apple</span></li>
-                                <li>Color:<span>White</span></li>
-                                <li>Warranty:<span>1 Year</span></li>
-                                <li>
-                                    <ul class="sidebar-social">
-                                        <li>Share:</li>
-                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="sidebar-item-box">
-                        <div class="gradient-wrapper">
-                            <div class="gradient-title">
-                                <h3>Safety Tips for Buyers</h3>
-                            </div>
-                            <ul class="sidebar-safety-tips">
-                                <li>Meet seller at a public place</li>
-                                <li>Check The item before you buy</li>
-                                <li>Pay only after collecting The item</li>
                             </ul>
                         </div>
                     </div>

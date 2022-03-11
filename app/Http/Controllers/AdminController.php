@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Posts;
+use App\Models\Payment;
+use App\Models\Prenium;
 use App\Models\Location;
 use App\Models\Categories;
 use Illuminate\Http\Request;
@@ -15,8 +17,23 @@ class AdminController extends Controller
     // user
     public function index(Request $request)
     {
-        $user = Auth::user();
+        if ($request->user()->cannot('view', Auth::user())) {
+            abort('401');
+        }
+        $payments = Payment::all();
         $posts = Posts::all();
+        $prenium = [];
+        $idprenium  = [];
+        $p  = prenium::all();
+        foreach ($p as $key => $value) {
+            $idprenium[] = $value->posts_id;
+        }        
+        foreach (Posts::all() as $key => $value) {
+            if (in_array($value->id, $idprenium)) {
+                $prenium[] = $value;
+            }
+
+        }
         $locations = Location::getAllLocations();
         $categories  = Categories::showCategories();
         $users  = User::all();
@@ -25,11 +42,16 @@ class AdminController extends Controller
            'datas_posts' => $posts,
            'locations' => $locations,
            'categories' => $categories,
+           'prenium' => $prenium,
+           'payments' => $payments
        ]);
     }
 
     public function add_user(Request $request)
     {
+        if ($request->user()->cannot('view', Auth::user())) {
+            abort('401');
+        }
         $request->validate([
             'name' => 'required',
             'email' => 'required',
@@ -52,8 +74,11 @@ class AdminController extends Controller
         
         
     }
-    public function delete_user($id)
+    public function delete_user($id, Request $request)
     {
+        if ($request->user()->cannot('view', Auth::user())) {
+            abort('401');
+        }
         $user  = User::where('id', $id);
         $user->delete();
         return back()->with('message', 'utilisateur supprimé');
@@ -64,46 +89,73 @@ class AdminController extends Controller
     }
     //post
 
-    public function posts()
+    public function posts(Request $request)
     {
+        if ($request->user()->cannot('view', Auth::user())) {
+            abort('401');
+        }
         $posts = Posts::all();
         return view('admin/posts', [
             'datas' => $posts
         ]);
     }
-    public function delete_post($id)
+    public function delete_post($id, Request $request)
     {
+        if ($request->user()->cannot('view', Auth::user())) {
+            abort('401');
+        }
         $post  = Posts::where('id', $id);
         $post->delete();
         return back()->with('message', 'utilisateur supprimé');
     }
-    public function disapproved($id)
+    public function disapproved($id, Request $request)
     {
+        if ($request->user()->cannot('view', Auth::user())) {
+            abort('401');
+        }
         $post =  Posts::where('id', $id)->first();
         $post->status  = "not approved";
         $post->save();
         return back()->with('message', 'Operation succesfully');
     }
-    public function approved($id)
+    public function approved($id, Request $request)
     {
+        if ($request->user()->cannot('view', Auth::user())) {
+            abort('401');
+        }
         $post =  Posts::where('id', $id)->first();
         $post->status  = "approved";
         $post->save();
         return back()->with('message', 'Operation succesfully');
     }
 
-    public function block($id)
+    public function block($id, Request $request)
     {
+        if ($request->user()->cannot('view', Auth::user())) {
+            abort('401');
+        }
         $user =  User::where('id', $id)->first();
-        $user->status_connection === 'block';
+        $user->status_connection = 'block';
         $user->save();
         return back()->with('message', 'Operation succesfully');
     }
-    public function unblock($id)
+    public function unblock($id, Request $request)
     {
+        if ($request->user()->cannot('view', Auth::user())) {
+            abort('401');
+        }
         $user =  User::where('id', $id)->first();
-        $user->status_connection === 'access';
+        $user->status_connection = 'access';
         $user->save();
+        return back()->with('message', 'Operation succesfully');
+    }
+    public function removePrenium($id, Request $request)
+    {
+        if ($request->user()->cannot('view', Auth::user())) {
+            abort('401');
+        }
+        $prenium  = Prenium::where('posts_id', $id)->first();
+        $prenium->delete();
         return back()->with('message', 'Operation succesfully');
     }
 

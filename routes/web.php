@@ -21,6 +21,7 @@ Route::get('/', [AppController::class, 'home'])->name('home');
 Route::post('/bestOffers', [AppController::class, 'saveEmailForBestOffers'])->name('saveEmailForBestOffers'); 
 Route::get('/about', [AppController::class, 'about'])->name('about');
 Route::get('/contact', [AppController::class, 'contact'])->name('contact');
+Route::post('/contact/message', [AppController::class, 'send_message'])->name('sendMessage');
 
 Route::middleware(['auth'])->group(function ()
 {
@@ -44,6 +45,7 @@ Route::middleware(['auth'])->group(function ()
    Route::get('account/block/{id}', [AdminController::class, 'block'])->name('user.block');
    Route::get('account/approved/{id}', [AdminController::class, 'approved'])->name('admin.approved');
    Route::get('account/disapproved/{id}', [AdminController::class, 'disapproved'])->name('admin.disapproved'); 
+   Route::get('account/remove-prenium/{id}', [AdminController::class, 'removePrenium'])->name('admin.remove_prenium');
 
 });
 Route::get('post/{id}/details', [PostsController::class, 'postDetails'])->name('postDetails')->whereNumber('id');

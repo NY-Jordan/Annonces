@@ -8,8 +8,10 @@ use App\Models\Prenium;
 use App\Models\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\CategoriesController;
+use App\Mail\AppMail;
 
 class AppController extends Controller
 {
@@ -22,7 +24,7 @@ class AppController extends Controller
         foreach ($p as $key => $value) {
             $idprenium[] = $value->posts_id;
         }        
-        foreach (Posts::all() as $key => $value) {
+        foreach (Posts::where('status', 'approved')->get() as $key => $value) {
             if (in_array($value->id, $idprenium)) {
                 $prenium[] = $value;
             }
@@ -59,12 +61,17 @@ class AppController extends Controller
             "email" => ["required"]
         ]);
        $email = $request->email;
-       file_put_contents('emails_bestOffers.txt', 'yvanjordannguetse@yahoo.fr');
-       return redirect('');
+       file_put_contents('emails_bestOffers.txt', $email);
+       return redirect('')->with('message', 'Your emails has been save');
     }
     public function admin()
     {
         return view('admin/views/index');
+    }
+    public function send_message()
+    {
+        Mail::to('yvanjordannguetse@yahoo.fr')->send(new AppMail());
+        return back()->with('message', 'message send');
     }
    
 }

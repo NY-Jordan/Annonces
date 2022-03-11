@@ -2,10 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use App\Models\User;
 
-class UsersPolicies
+class UserPolicy
 {
     use HandlesAuthorization;
 
@@ -29,7 +29,7 @@ class UsersPolicies
      */
     public function view(User $user, User $model)
     {
-        return $user->status === 'normal';
+        return $user->status === 'Admin';
     }
 
     /**
