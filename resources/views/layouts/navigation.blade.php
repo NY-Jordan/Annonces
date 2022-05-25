@@ -4,14 +4,15 @@
 
             <div class="col-lg-2 col-md-2 col-sm-3">
                 <div class="logo-area">
-                    <a href="{{ route('home') }}" class="img-fluid"><img src="{{ asset('img/log.png') }}" alt=""></a>
+                    <a href="{{ route('home') }}" class="img-fluid"><img src="{{ asset('img/logo.png') }}"
+                            alt=""></a>
                 </div>
             </div>
             <div class="col-lg-8 col-md-8 col-sm-6 possition-static">
                 <div class="cp-main-menu">
                     <nav>
                         <ul>
-                            <li><a href="{{ route('home') }}">Acceuil</a></li>                          
+                            <li><a href="{{ route('home') }}">Acceuil</a></li>
                             <li class="menu-justify current"><a href="{{ route('account') }}">Mon compte</a>
 
                                 <div class="rt-dropdown-mega container">
@@ -19,15 +20,26 @@
                                         <div>
                                             <ul class="rt-mega-items">
                                                 @if (auth()->check())
-                                                    <form action="{{ route("logout") }}" method="post">
+                                                    <form action="{{ route('logout') }}" method="post">
                                                         @csrf
-                                                        <li><a href=""><button class="btn btn-link " style="color: aliceblue; height:30px; text-decoration:none; " type="submit">se deconnecter</button></a></li>
+                                                        <li><a href=""><button class="btn btn-link "
+                                                                    style="color: aliceblue; height:30px; text-decoration:none; "
+                                                                    type="submit">se deconnecter</button></a></li>
+                                                        
                                                     </form>
+                                                    <li>
+                                                        <a href="#" data-toggle="modal" data-target="#points">
+                                                            <button class="btn btn-link " data-toggle="modal" data-target="#points" style="color: aliceblue; height:30px; text-decoration:none; "
+                                                                    type="submit">Mes Points</button>
+                                                        </a>
+                                                    </li>
                                                 @else
-                                                    <li><a data-toggle="modal"    data-target="#myModal" href="index.html">se connecter</a></li>
+                                                    <li><a data-toggle="modal" data-target="#myModal"
+                                                            href="index.html">se connecter</a></li>
                                                     <li><a href="{{ route('register') }}">s'inscrire</a></li>
                                                 @endif
-                                                <li><a href="{{ route('addPostPrenium') }}">Poster une annonce</a></li>
+                                                <li><a href="{{ route('addPostPrenium') }}">Poster une annonce</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -35,18 +47,18 @@
                             </li>
                             <li><a href="{{ route('contact') }}">Contact</a></li>
                             @if (Auth::check())
-                                @if (Auth::user()->status === "Admin")
-                                    <li><a href="{{ route('admin.index') }}">Admin</a></li> 
+                                @if (Auth::user()->status === 'Admin')
+                                    <li><a href="{{ route('admin.index') }}">Administration</a></li>
                                 @endif
                             @endif
-                           
-                            
+
+
                         </ul>
                     </nav>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-3 text-right">
-                <a href="{{ route('addPostPrenium') }}" class="cp-default-btn">Post Your Ad</a>
+            <div class="col-lg-2 col-md-2 col-sm-3 text-center">
+                <a href="{{ route('addPostPrenium') }}" class="cp-default-btn">Poster</a>
             </div>
         </div>
     </div>
@@ -58,39 +70,23 @@
                 <div class="mobile-menu">
                     <nav id="dropdown">
                         <ul>
-                            <li><a href="#">Home</a>
+                            <li><a href="">Acceuil</a></li>
+                            <li><a href="{{ route('account') }}">Mon Compte</a>
                                 <ul>
-                                    <li><a href="index.html">Home 1</a></li>
-                                    <li><a href="index2.html">Home 2</a></li>
-                                    <li><a href="index3.html">Home 3</a></li>
-                                    <li><a href="index4.html">Home 4</a></li>
+                                    @if (auth()->check())
+                                        <form action="{{ route('logout') }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="link">Se deconnecter</button>
+                                        </form>
+                                    @else
+                                        <li><a data-toggle="modal" data-target="#myModal" href="index.html">se
+                                                connecter</a></li>
+                                        <li><a href="{{ route('register') }}">s'inscrire</a></li>
+                                    @endif
+                                    <li><a href="post-ad.html">Poster une Annonce</a></li>
                                 </ul>
                             </li>
-                            <li><a href="about.html">Who We Are</a></li>
-                            <li><a href="how-it-works.html">How It Works?</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul>
-                                    <li><a href="pricing.html">Pricing Plan</a></li>
-                                    <li><a href="category-grid-layout1.html">Grid View 1</a></li>
-                                    <li><a href="category-grid-layout2.html">Grid View 2</a></li>
-                                    <li><a href="category-grid-layout3.html">Grid View 3</a></li>
-                                    <li><a href="category-list-layout1.html">List View 1</a></li>
-                                    <li><a href="category-list-layout2.html">List View 2</a></li>
-                                    <li><a href="category-list-layout3.html">List View 3</a></li>
-                                    <li><a href="single-product-layout1.html">Product Details 1</a></li>
-                                    <li><a href="single-product-layout2.html">Product Details 2</a></li>
-                                    <li><a href="single-product-layout3.html">Product Details 3</a></li>
-                                    <li><a href="favourite-ad-list.html">Favourite Ad</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="post-ad.html">Post Ad</a></li>
-                                    <li><a href="https://www.radiustheme.com/demo/html/classipost/classipost/report-abuse.html"
-                                            data-toggle="modal" data-target="#report_abuse">Report Abuse</a></li>
-                                    <li><a href="faq.html">Faq</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="category-grid-layout1.html">Features</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="{{ Route('contact') }}">Contact</a></li>
                         </ul>
                     </nav>
                 </div>

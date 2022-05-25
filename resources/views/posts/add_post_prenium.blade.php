@@ -224,7 +224,7 @@
                                         <li>
                                             <div class="form-group">
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio6" name="Payement[]" value="Urgent"
+                                                    <input type="radio" id="inlineRadio6" name="Payement[]" value="{{ URGENT }}"
                                                         name="radioInline3">
                                                     <label for="inlineRadio6">Urgent Ad</label>
                                                     <span>5. 000 F CFA</span>
@@ -234,7 +234,7 @@
                                         <li>
                                             <div class="form-group">
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio7" name="Payement[]" value="Top of page"
+                                                    <input type="radio" id="inlineRadio7" name="Payement[]" value="{{ TOP_OF_PAGE }}"
                                                         name="radioInline3">
                                                     <label for="inlineRadio7">Top of the Page Ad</label>
                                                     <span>10.000 F CFA</span>
@@ -244,7 +244,7 @@
                                         <li>
                                             <div class="form-group">
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio8" name="Payement[]" value="Top of page + Urgent"
+                                                    <input type="radio" id="inlineRadio8" name="Payement[]" value="{{ TOP_OF_PAGE_URGENT }}"
                                                         name="radioInline3">
                                                     <label for="inlineRadio8">Top of the Page Ad + Urgent Ad</label>
                                                     <span>15.000 F CFA</span>

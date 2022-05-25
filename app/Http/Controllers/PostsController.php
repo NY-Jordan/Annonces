@@ -6,16 +6,18 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\Posts;
-use App\Models\Prenium;
 use App\Models\Payment;
+use App\Models\Prenium;
 use App\Models\Location;
 use App\Models\Categories;
+use App\Models\Show_phone;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\CategoriesController;
-use Illuminate\Support\Facades\Gate;
 
 class PostsController extends Controller
 {
@@ -96,18 +98,18 @@ class PostsController extends Controller
                 if (!empty($request->Payement)) {
                     $request->session()->push('url', $request->url());
                     $request->session()->push('id', $post->id);
-                    if ($request->Payement[0] === 'Urgent') {
+                    if ($request->Payement[0] === URGENT) {
                         return redirect('/Featured/10/'.$request->Payement[0]);
-                    }elseif ($request->Payement[0] === 'Top of page') {
+                    }elseif ($request->Payement[0] === TOP_OF_PAGE) {
                         return redirect('/Featured/20/'.$request->Payement[0]);
-                    }elseif ($request->Payement[0] === 'Top of page + Urgent') {
+                    }elseif ($request->Payement[0] === TOP_OF_PAGE_URGENT) {
                         return redirect('/Featured/30/'.$request->Payement[0]);
                     }
                     
                 }
                 /*  */
                 //redirection
-                return redirect("post/{$post->id}/details");
+                return redirect("post/{$post->id}/details")->with('message', 'Enregistrement reussis ✔ . votre Annonce sera mis en ligne après verification des Administrateurs');
             }catch (\Throwable $errors) {
                 dd($errors);
             }
@@ -125,7 +127,13 @@ class PostsController extends Controller
         $user_post = User::where('id', $post->user_id)->get();
         $imagesPost = Image::where('posts_id', $post->id)->get();
         $categories = Categories::all();
+        $see_phone = false;
+        
         if (Auth::check()) {
+            $show_phone = Show_phone::where('user_id', Auth::user()->id)->where('post_id', $post->id)->get();
+            if (!$show_phone->isEmpty()) {
+                $see_phone = true;
+            }
            $post->view  = $post->view + 1; 
            $post->save();
         }
@@ -136,7 +144,8 @@ class PostsController extends Controller
             'user_post' => $user_post,
             'categories' => $categories,
             'locations' => $locations,
-            'user' => $request->user()
+            'user' => $request->user(),
+            'see_phone' => $see_phone,
         ]);
     }
     
@@ -260,6 +269,38 @@ class PostsController extends Controller
         ]);
     
     }
+    public function getNumber( Request $request)
+    {
+        $id = $request->id;
+        try {
+            if (Auth::user()->bonus_points === 0) {
+                if (Auth::user()->points >= 5) {
+                    $user = User::find(1);
+                    $user->points = $user->points - 5 ;
+                    Show_phone::CreateNew(Auth::user()->id, $id, "Get contact of post ".Posts::find($id)->title);
+                    $user->save();
+                    return ["message" => "operation reussi ✔"];
+                } else {
+                    return ["message" => "<p style = 'color:red; margin-bottom: 00px;'>Echec de l'operation ✖  </p>  <p> nombre de points insuffisant </p> <br>  <a href='' data-toggle='modal' data-target='#points'>Vous pouvez acheter des points ici </a>"];
+                }
+                
+            } else {
+                if (Auth::user()->bonus_points >= 5) {
+                    $user = User::find(1);
+                    $user->bonus_points = $user->bonus_points - 5 ;
+                    Show_phone::CreateNew(Auth::user()->id, $id, "Get contact of post ".Posts::find($id)->title);
+                    $user->save();
+                    return ['message' => "operation reussi ✔"];
+                } else { 
+                    return ["message" => "<p style = 'color:red; margin-bottom: 00px;'>Echec de l'operation ✖  </p>  <p> nombre de points insuffisant </p>  <a href=''>Vous pouvez acheter des points ici </a>"];
+                }
+                
+            }
+        } catch (\Throwable $th) {
+            return $th;
+        }
+        
+    }
     public function featured($id, Request $request)
     {
         
@@ -274,9 +315,12 @@ class PostsController extends Controller
         ]);
         
     }
-    public function payment($amount, $status, Request $request)
+
+    public function paymentPoints($amount, $points, $status, Request $request)
     {
         try {
+            $trueAmount =  (isset($amount) && !empty($amount)) ? $amount : $request->amount;
+            $trueStatus =  (isset($status) && !empty($status)) ? $status : $request->status;
             $request_token = Http::post('https://demo.campay.net/api/token/', [
                 "username" =>  "vaGVIwXzgNErXOL5LxE-Voyjp3fjJumS22Jn4HobQlZrsCrh1fsTG611Y43FFVvwxQIAS-3q-9McyzOCirIivg",
                 "password" => "vrvj1lvTKfoCRFfwLPzBo1ZyM77r4LKRGQlyOQMaKB01x_fn9yydqV5aVdj-7jvMxZdUs_B4pAQs_rmYDZ07UA"
@@ -289,20 +333,113 @@ class PostsController extends Controller
                 'Authorization' => 'Token '.$token,
             ])->post('https://demo.campay.net/api/get_payment_link/', [
                 'Authorization' => 'Token '.$token,
-                "amount" => (int)$amount,
+                "amount" => (int)$trueAmount,
+                "external_reference" => $reference,
+                "currency" => "XAF",
+                "redirect_url" => "http://localhost:8000/payement/status/points"
+            ]);   
+
+            if ($response->status() === 400) {
+                return back()->with('message',"nous avons quelques problèmes veuillez réessayer plus tard");              
+            }
+            $link = $response->json()['link'];
+            $request->session()->push('id_user', Auth::user()->id);
+            $request->session()->push('status', $trueStatus);
+            $request->session()->push('points', $points);
+            $request->session()->push('token', $token);
+            $request->session()->push('amount', $trueAmount);
+            return redirect($link);
+        } catch (\Throwable $th) {
+            return back()->with('message',"nous avons quelques problèmes veuillez réessayer plus tard");              
+        }
+        
+    } 
+    public function statusPoints(Request $request)
+    {
+        try {
+        $status = $request->session()->get('status');
+        $token = $request->session()->get('token');
+        $points = $request->session()->get('points');
+        $post_id = $request->session()->get('post_id');
+        $user_id = $request->session()->get('id_user');
+        $amount = $request->session()->get('amount');
+        $reference = $request->reference;
+        //request for obtain the sstatus
+        $response = Http::withHeaders([
+            'Authorization' => 'Token ' . $token[0],
+        ])->get('https://demo.campay.net/api/transaction/' . $reference . '/', [
+            'Authorization' => 'Token ' . $token[0],
+        ]);
+        $request->session()->forget('token');
+
+        if ($response->status() === 401) {
+            return redirect('/account')->with('message', "echec de l'operation, nous avons un problème veuillez reesayer plus tard ");
+        }
+        
+        $post = Posts::where('id', $post_id)->first();
+        if ($response->json()['status'] === "SUCCESSFUL") {
+            $user = User::where('id',$user_id)->first();
+            $user->points += (int)$points[0];
+            $transactions = new Transaction();
+            $transactions->amount = (int)$amount[0];
+            $transactions->reason = "Achat de  points";
+            $transactions->user_id = (int)$user_id[0];
+            $user->save();
+            $transactions->save();
+            $request->session()->forget('status');
+            $request->session()->forget('post_id');
+            $request->session()->forget('points');
+            $request->session()->forget('amount');
+            $request->session()->forget('id_user');
+            $request->session()->forget('token');
+            return redirect('/account')->with('message', 'Achat de points reussis');
+        } elseif ($response->json()['status'] === "FAILED") {
+            return redirect("/account")->with('message', "echec de l'operation, veuillez verifiez le montant de votre compte et reesayer");
+        }
+        } catch (\Throwable $th) {
+            dd($th);
+        }
+        
+    } 
+    public function suscribePrenium(Request $request)
+    {
+        
+        $status = $request->forfait;
+        $amount = $request->urgent;
+        return $this->payment((int)$amount, $status, $request);
+    }
+    public function payment($amount, $status, Request $request)
+    {
+        try {
+            $trueAmount =  (isset($amount) && !empty($amount)) ? $amount : $request->amount;
+            $trueStatus =  (isset($status) && !empty($status)) ? $status : $request->status;
+            $request_token = Http::post('https://demo.campay.net/api/token/', [
+                "username" =>  "vaGVIwXzgNErXOL5LxE-Voyjp3fjJumS22Jn4HobQlZrsCrh1fsTG611Y43FFVvwxQIAS-3q-9McyzOCirIivg",
+                "password" => "vrvj1lvTKfoCRFfwLPzBo1ZyM77r4LKRGQlyOQMaKB01x_fn9yydqV5aVdj-7jvMxZdUs_B4pAQs_rmYDZ07UA"
+            ]);        
+            $token   = $request_token->json()['token'];
+    
+            //request for obtain the payment links
+            $reference = 'NY-ANNONCE-payment-by-campay-'.uniqid();
+            $response = Http::withHeaders([
+                'Authorization' => 'Token '.$token,
+            ])->post('https://demo.campay.net/api/get_payment_link/', [
+                'Authorization' => 'Token '.$token,
+                "amount" => (int)$trueAmount,
                 "external_reference" => $reference,
                 "currency" => "XAF",
                 "redirect_url" => "http://localhost:8000/payement/status"
             ]);   
+
             if ($response->status() === 400) {
-                return redirect()->back()->with('message', 'nous avons quelques problèmes veuillez réessayer plus tard');
+                return back()->with('message',"nous avons quelques problèmes veuillez réessayer plus tard");              
             }
             $link = $response->json()['link'];
-            $request->session()->push('status', $status);
+            $request->session()->push('status', $trueStatus);
             $request->session()->push('token', $token);
             return redirect($link);
         } catch (\Throwable $th) {
-            return back()->with('message', 'nous avons quelques problème! veuillez reesayer plus tard. si le problème preciste veuillez contacter notre service client au 697843152');
+            return back()->with('message',"nous avons quelques problèmes veuillez réessayer plus tard");              
         }
         
     }
@@ -333,13 +470,13 @@ class PostsController extends Controller
             $prenium->status =  $status[0];
             
             
-            if ($status === 'Urgent') {
+            if ($status === URGENT) {
                 $post->priority = 15;
             }
-            if ($status === 'Top of page') {
+            if ($status === TOP_OF_PAGE) {
                 $post->priority = 30;
             }
-            if ($status === 'Top of page + Urgent') {
+            if ($status === TOP_OF_PAGE_URGENT) {
                 $post->priority = 45;
             }
             $post->save();
@@ -349,10 +486,13 @@ class PostsController extends Controller
             $payment->prenium_id = $prenium->id;
             $payment->montant = $response->json()['amount'];
             $payment->user_id = Auth::user()->id;
+            $user = User::where('id', Auth::user())->first();
+            $user->bonus_points += 15;
+            $user->save(); 
             $payment->save();
             $request->session()->forget('status');
             $request->session()->forget('post_id');
-            return redirect()->route('postDetails', $post->id)->with('message', 'purchase of points successful !!');
+            return redirect()->route('postDetails', $post->id)->with('message', 'your ad has been brought to the foreground successfully');
         } elseif ($response->json()['status'] === "FAILED") {
             return redirect("/account")->with('message', "check the amount of your balance  and try again");
         }

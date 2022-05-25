@@ -5,9 +5,7 @@
         <div class="container">
             <div class="breadcrumbs-area">
                 <ul>
-                    <li><a href="#">Home</a> -</li>
-                    <li><a href="#">Electronics</a> -</li>
-                    <li class="active">Computer</li>
+                    <li><a href="#">Home</a> - Details</li>
                 </ul>
             </div>
         </div>
@@ -60,22 +58,17 @@
                                 </div>
                             </div>
                             <div class="section-title-left-dark child-size-xl title-bar item-mb">
-                                <h3>Product Details:</h3>
+                                <h3>Details:</h3>
                                 <p>{{ $post->details }}
                                 </p>
                             </div>
 
-                            <ul class="item-actions border-top">
-                                <li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i>Save Ad</a></li>
-                                <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i>Share ad</a></li>
-                                <li class="item-danger"><a href="#"><i class="fa fa-exclamation-triangle"
-                                            aria-hidden="true"></i>Report abuse</a></li>
-                            </ul>
+                            
                         </div>
                     </div>
                     <div class="gradient-wrapper item-mb">
                         <div class="gradient-title">
-                            <h2>More Ads From This User </h2>
+                            <h2>D'autre Annonces de cette utilisateur </h2>
                         </div>
                         <div class="gradient-padding">
                             <div class="cp-carousel nav-control-middle category-grid-layout1" data-loop="true"
@@ -95,7 +88,7 @@
                                                     class="img-fluid">
                                                 <div class="trending-sign" data-tips="Featured"> <i class="fa fa-bolt"
                                                         aria-hidden="true"></i> </div>
-                                                <div class="title-ctg"></div>
+                                                <div class="title-ctg">{{ $recentPost->categories->categoryName }}</div>
                                                 <ul class="info-link">
                                                     <li><a href="{{ Storage::url($recentPost->image->path) }}"
                                                             class="elv-zoom" data-fancybox-group="gallery"
@@ -110,27 +103,25 @@
                                             </div>
                                         </div>
                                         <div class="item-content">
-                                            <div class="title-ctg">Clothing</div>
+                                            <div class="title-ctg">{{ $recentPost->categories->categoryName }}</div>
                                             <h3 class="short-title"><a
-                                                    href="https://www.radiustheme.com/demo/html/classipost/classipost/single-product1.html">{{ $k = strlen($recentPost->title) > 10 ? substr($recentPost->title, 0, 10) . '...' : $recentPost->title }}</a>
+                                                    href="{{ route('postDetails', ['id' => $recentPost->id]) }}">{{ $k = strlen($recentPost->title) > 10 ? substr($recentPost->title, 0, 10) . '...' : $recentPost->title }}</a>
                                             </h3>
                                             <h3 class="long-title"><a
-                                                    href="https://www.radiustheme.com/demo/html/classipost/classipost/single-product1.html">Basics
-                                                    Lightweight On-Ear Headphones</a></h3>
+                                                    href="{{ route('postDetails', ['id' => $recentPost->id]) }}">{{ $k = strlen($recentPost->title) > 10 ? substr($recentPost->title, 0, 10) . '...' : $recentPost->title }}</a></h3>
                                             <ul class="upload-info">
                                                 <li class="date"><i class="fa fa-clock-o"
                                                         aria-hidden="true"></i>07 Mar,
                                                     2017
                                                 </li>
                                                 <li class="place"><i class="fa fa-map-marker"
-                                                        aria-hidden="true"></i>Sydney,
-                                                    Australia</li>
+                                                        aria-hidden="true"></i>{{ $recentPost->user->sellerInformations->location->locationName }},
+                                                        {{ $recentPost->user->sellerInformations->district }}</li>
                                                 <li class="tag-ctg"><i class="fa fa-tag"
-                                                        aria-hidden="true"></i>Clothing
+                                                        aria-hidden="true"></i>{{ $recentPost->categories->categoryName }}
                                                 </li>
                                             </ul>
-                                            <p>Eimply dummy text of the printing and typesetting industrym has been the
-                                                industry's standard dummy.</p>
+                                            <p>{{ substr($recentPost->details, 0, 100).'...'  }}</p>
                                             <div class="price">{{ $recentPost->price }}</div>
                                             <a href="single-product-layout1.html" class="product-details-btn">Details</a>
                                         </div>
@@ -143,14 +134,14 @@
                         <div class="col-lg-7 col-md-12 col-sm-12 col-12">
                             <div class="add-layout2-left d-flex align-items-center">
                                 <div>
-                                    <h2>Do you Have Something To Sell?</h2>
-                                    <h3>Post your ad on classipost.com</h3>
+                                    <h2>Vous avez quelques chose à vendre ?</h2>
+                                    <h3>Poster une Annonce sur  ny-annconces.com</h3>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-5 col-md-12 col-sm-12 col-12">
                             <div class="add-layout2-right d-flex align-items-center justify-content-end mb--sm">
-                                <a href="{{ route('addPostPrenium') }}" class="cp-default-btn-sm-primary">Post Your Ad Now!</a>
+                                <a href="{{ route('addPostPrenium') }}" class="cp-default-btn-sm-primary">Poster une Annonce Maintenant</a>
                             </div>
                         </div>
                     </div>
@@ -159,15 +150,15 @@
                     <div class="sidebar-item-box">
                         <div class="gradient-wrapper">
                             <div class="gradient-title">
-                                <h3>Seller Information</h3>
+                                <h3>Informations du L'annonceur</h3>
                             </div>
                             <ul class="sidebar-seller-information">
                                 <li>
                                     <div class="media">
                                         <img src="../../img/user/user1.png" alt="user" class="img-fluid pull-left">
                                         <div class="media-body">
-                                            <span>Posted By</span>
-                                            <h4> {{ $user_post[0]->first_name }} {{ $user_post[0]->last_name }}</h4>
+                                            <span>Posté Par</span>
+                                            <h4 id=""> {{ $user_post[0]->first_name }} {{ $user_post[0]->last_name }}</h4>
                                         </div>
                                     </div>
                                 </li>
@@ -175,30 +166,13 @@
                                     <div class="media">
                                         <img src="../../img/user/user2.png" alt="user" class="img-fluid pull-left">
                                         <div class="media-body">
-                                            <span>Location</span>
+                                            <span>Ville</span>
                                             <h4>{{ $user_post[0]->sellerInformations->location->locationName }},
                                                 {{ $user_post[0]->sellerInformations->district }}</h4>
                                         </div>
                                     </div>
                                 </li>
-                                <li>
-                                    <div class="media">
-                                        <img src="../../img/user/user3.png" alt="user" class="img-fluid pull-left">
-                                        <div class="media-body">
-                                            <span>Contact Number</span>
-                                            <h4>{{ $user_post[0]->sellerInformations->mobile_phone1 }}</h4>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="media">
-                                        <img src="../../img/user/user4.png" alt="user" class="img-fluid pull-left">
-                                        <div class="media-body">
-                                            <span>Want To Live Chat</span>
-                                            <h4>Chat Now!</h4>
-                                        </div>
-                                    </div>
-                                </li>
+                                
                                 <li>
                                     <div class="media">
                                         <img src="../../img/user/user5.png" alt="user" class="img-fluid pull-left">
@@ -209,6 +183,30 @@
                                     </div>
                                 </li>
                                 @if (auth()->check())
+                                    @if (Auth::user()->id === $post->user_id || $see_phone)
+                                    <li>
+                                        <div class="media">
+                                            <img src="../../img/user/user3.png" alt="user" class="img-fluid pull-left">
+                                            <div class="media-body">
+                                                <span>Contact</span>
+                                                
+                                                <h4>{{ $user_post[0]->sellerInformations->mobile_phone1 }}</h4>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    @else
+                                        <li>
+                                            <h4><button class="btn btn-secondary" data-toggle="modal" data-target="#Validation_get_phone" >Obtenir le contact</button></h4>
+                                        </li>
+                                        <input type="hidden" name="" id='idPost' value="{{ $post->id }}"  >
+                                    @endif
+                                @else
+                                    <li>
+                                        <h4><button class="btn btn-secondary" data-toggle="modal" data-target="#Validation_get_phone" >Obtenir le contact</button></h4>
+                                    </li>
+                                @endif 
+                                @if (auth()->check())
                                     @if ($user->id === $post->user->id)
                                         <li>
                                             <div class="media">
@@ -216,7 +214,7 @@
                                                 <div class="media-body">
                                                     <span>Update My Post</span>
                                                     <h4><a class="navbar-item"
-                                                            href="{{ route('UpdatePost', $post->id) }}">Update</a></h4>
+                                                            href="{{ route('UpdatePost', $post->id) }}">Modifier</a></h4>
                                                 </div>
                                             </div>
                                         </li>
@@ -225,8 +223,8 @@
 
                                                 <div class="media-body">
                                                     <span>Delete My Post</span>
-                                                    <h4><a class="navbar-item"
-                                                            href="{{ route('DeletePost', $post->id) }}">Delete</a></h4>
+                                                    <h4 id="supp" value="{{ $post->id }}"><a class="navbar-item"
+                                                            href="{{ route('DeletePost', $post->id) }}">Supprimer</a></h4>
                                                 </div>
                                             </div>
                                         </li>
@@ -239,4 +237,60 @@
             </div>
         </div>
     </section>
+
+    
+    <div class="modal fade" id="Validation_get_phone" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Validation</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+               L'obtention du contact de l'annonce  <strong>{{ $post->title }}</strong> vous coûtera <strong>5 Points</strong>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="getNumberCancel" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+              <button type="button" id="getNumber" class="btn btn-primary">Confirmer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Info </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="bodyAlert">
+               
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="pasConnecter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Echec de l'operation</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+               Echec de l'operation .. ✖   @if (!auth()->check())<br><p>Veuillez vous connecter ou vous creer votre compte <a href="{{ route("register") }}">ici</a> <br> <br> <strong>NB: Benéficiez de 25 points bonus à la creation de votre compte</strong> </p> @else <br> <p>Veuillez reesayer plus tard</p> @endif
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="getNumberCancel" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+            </div>
+          </div>
+        </div>
+      </div>
 @endsection

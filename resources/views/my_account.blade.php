@@ -10,21 +10,22 @@
             </div>
         </div>
         <div class="container">
+
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-12">
                     <div class="gradient-wrapper sidebar-item-box">
                         <ul class="nav tab-nav my-account-title">
                             <li class="nav-item"><a href="#my-add" class="active" data-toggle="tab"
-                                    aria-expanded="false">My Ads</a></li>
-                            <li class="nav-item"><a href="#personal" data-toggle="tab" aria-expanded="false">Personal
-                                    Information</a></li>
+                                    aria-expanded="false">Mes Annonces</a></li>
+                            <li class="nav-item"><a href="#personal" data-toggle="tab"
+                                    aria-expanded="false">Informations Personnelles</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-8 col-12">
                     <div class="tab-content my-account-wrapper gradient-wrapper input-layout1">
                         <div role="tabpanel" class="gradient-padding tab-pane fade" id="personal">
-                            <h2 class="title-section">Personal Information</h2>
+                            <h2 class="title-section">Informations Personnelles</h2>
                             <form id="login-page-form" method="POST" action="{{ route('updateInformations') }}">
                                 @csrf
                                 <div class="row">
@@ -40,7 +41,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 col-sm-4 col-12">
-                                        <label class="control-label">First Name</label>
+                                        <label class="control-label">Nom</label>
                                     </div>
                                     <div class="col-lg-9 col-md-8 col-sm-8 col-12">
                                         <div class="form-group">
@@ -52,7 +53,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 col-sm-4 col-12">
-                                        <label class="control-label">Last Name</label>
+                                        <label class="control-label">Pre-Nom</label>
                                     </div>
                                     <div class="col-lg-9 col-md-8 col-sm-8 col-12">
                                         <div class="form-group">
@@ -64,23 +65,19 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 col-sm-4 col-12">
-                                        <label class="control-label">Phone</label>
+                                        <label class="control-label">Telephone</label>
                                     </div>
                                     <div class="col-lg-9 col-md-8 col-sm-8 col-12">
                                         <div class="form-group">
                                             <input type="text" id="phone" name="Phone"
                                                 value="{{ $user->sellerInformations->mobile_phone1 }}"
                                                 class="form-control" placeholder="Your Phone Number">
-                                            <div class="checkbox checkbox-primary checkbox-circle">
-                                                <input id="checkbox1" name="show_phone" type="checkbox" checked="">
-                                                <label for="checkbox1">Hide the phone number on the published ads.</label>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 col-sm-4 col-12">
-                                        <label class="control-label">Current Password</label>
+                                        <label class="control-label">Mot de passe actuelle</label>
                                     </div>
                                     <div class="col-lg-9 col-md-8 col-sm-8 col-12">
                                         <div class="form-group">
@@ -89,7 +86,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-4 col-sm-4 col-12">
-                                        <label class="control-label">New Password</label>
+                                        <label class="control-label">Nouveau Mot de passe</label>
                                     </div>
                                     <div class="col-lg-9 col-md-8 col-sm-8 col-12">
                                         <div class="form-group">
@@ -98,7 +95,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-4 col-sm-4 col-12">
-                                        <label class="control-label">Confirm Password</label>
+                                        <label class="control-label">confirmer le mot de passe</label>
                                     </div>
                                     <div class="col-lg-9 col-md-8 col-sm-8 col-12">
                                         <div class="form-group">
@@ -110,7 +107,7 @@
                                 <div class="row">
                                     <div class="ml-auto col-lg-9 col-md-8 col-sm-8 col-12 ml-none--mb">
                                         <div class="form-group">
-                                            <button type="submit" class="cp-default-btn-sm">Update Details!</button>
+                                            <button type="submit" class="cp-default-btn-sm">Modifier</button>
                                         </div>
                                     </div>
                                 </div>
@@ -123,7 +120,7 @@
                                         <div class="gradient-title">
                                             <div class="row no-gutters">
                                                 <div class="col-4 text-center-mb">
-                                                    <h2 class="mb10--mb">My Ad List</h2>
+                                                    <h2 class="mb10--mb">Mes Annonces</h2>
                                                 </div>
                                                 <div class="col-8">
                                                     <div class="layout-switcher float-none-mb text-center-mb mb10--mb">
@@ -132,14 +129,14 @@
                                                                 <div class="page-controls-sorting">
                                                                     <button class="sorting-btn dropdown-toggle"
                                                                         type="button" data-toggle="dropdown"
-                                                                        aria-expanded="false">Sort By<i
+                                                                        aria-expanded="false">Trier par<i
                                                                             class="fa fa-sort"
                                                                             aria-hidden="true"></i></button>
                                                                     <div class="dropdown-menu">
                                                                         <a class="dropdown-item"
                                                                             href="?q=created_at">Date</a>
-                                                                        <a class="dropdown-item" href="?q=price">Best
-                                                                            Sale</a>
+                                                                        <a class="dropdown-item" href="?q=price">Meilleur
+                                                                            Prix</a>
                                                                     </div>
                                                                 </div>
                                                             </li>
@@ -157,75 +154,82 @@
                                         </div>
                                         <div id="category-view" class="category-list-layout3 gradient-padding zoom-gallery">
                                             <div class="row">
-                                                @foreach ($posts as $post)
-                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                                                        <div class="product-box item-mb zoom-gallery">
-                                                            <div class="item-mask-wrapper">
-                                                                <div class="item-mask secondary-bg-box"><img
-                                                                        src="{{ Storage::url($post->image->path) }}"
-                                                                        alt="categories" class="img-fluid">
-                                                                    <a href="{{ route('featured', $post->id) }}">
-                                                                        <div class="trending-sign active"
-                                                                            data-tips="Featured">
-                                                                            <i class="fa fa-bolt"
-                                                                                aria-hidden="true"></i>
-                                                                        </div>
-                                                                        <div class="title-ctg">
-                                                                            {{ $post->categories->categoryName }}
-                                                                        </div>
-                                                                    </a>
-                                                                    <ul class="info-link">
-                                                                        <li><a href="{{ Storage::url($post->image->path) }}"
-                                                                                class="elv-zoom"
-                                                                                data-fancybox-group="gallery"
-                                                                                title="Title Here"><i
-                                                                                    class="fa fa-arrows-alt"
-                                                                                    aria-hidden="true"></i></a></li>
-                                                                        <li><a href="single-product-layout1.html"><i
-                                                                                    class="fa fa-link"
-                                                                                    aria-hidden="true"></i></a></li>
-                                                                    </ul>
-                                                                    <div class="symbol-featured"><img
-                                                                            src="img/banner/symbol-featured.png"
-                                                                            alt="symbol" class="img-fluid"> </div>
-                                                                </div>
+                                                @if (!empty($posts[0]))
+                                                    @foreach ($posts as $post)
+                                                        <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                                            <div class="product-box item-mb zoom-gallery">
+                                                                <div class="item-mask-wrapper">
+                                                                    <div class="item-mask secondary-bg-box"><img
+                                                                            src="{{ Storage::url($post->image->path) }}"
+                                                                            alt="categories" class="img-fluid">
+                                                                        <a href="{{ route('featured', $post->id) }}">
+                                                                            <div class="trending-sign active"
+                                                                                data-tips="Featured">
+                                                                                <i class="fa fa-bolt"
+                                                                                    aria-hidden="true"></i>
+                                                                            </div>
+                                                                            <div class="title-ctg">
+                                                                                {{ $post->categories->categoryName }}
+                                                                            </div>
+                                                                        </a>
+                                                                        <ul class="info-link">
+                                                                            <li><a href="{{ Storage::url($post->image->path) }}"
+                                                                                    class="elv-zoom"
+                                                                                    data-fancybox-group="gallery"
+                                                                                    title="Title Here"><i
+                                                                                        class="fa fa-arrows-alt"
+                                                                                        aria-hidden="true"></i></a></li>
+                                                                            <li><a href="single-product-layout1.html"><i
+                                                                                        class="fa fa-link"
+                                                                                        aria-hidden="true"></i></a></li>
+                                                                        </ul>
+                                                                        <div class="symbol-featured"><img
+                                                                                src="img/banner/symbol-featured.png"
+                                                                                alt="symbol" class="img-fluid"> </div>
+                                                                    </div>
 
-                                                            </div>
-                                                            <div class="item-content">
-                                                                <div class="title-ctg">
-                                                                    {{ $post->categories->categoryName }}</div>
-                                                                <h3 class="short-title"><a
-                                                                        href="{{ route('postDetails', $post->id) }}">{{ $post->title }}</a>
-                                                                </h3>
-                                                                <h3 class="long-title"><a
-                                                                        href="{{ route('postDetails', $post->id) }}">{{ $post->title }}</a>
-                                                                </h3>
-                                                                <ul class="upload-info">
-                                                                    <li class="date"><i class="fa fa-clock-o"
-                                                                            aria-hidden="true"></i>{{ $post->created_at->format('j F, Y') }}
-                                                                    </li>
-                                                                    <li class="place"><i class="fa fa-map-marker"
-                                                                            aria-hidden="true"></i>{{ $post->user->sellerInformations->location->locationName }},
-                                                                        {{ $post->user->sellerInformations->district }}
-                                                                    </li>
-                                                                    <li class="tag-ctg"><i class="fa fa-tag"
-                                                                            aria-hidden="true"></i>{{ $post->categories->categoryName }}
-                                                                    </li>
-                                                                </ul>
-                                                                <p>{{ substr($post->details, 0, 100) . '...' }}</p>
-                                                                @if (isset($post->prenium->status))
-                                                                    <span
-                                                                        style="background-color:<?= $post->prenium->status == 'Urgent' ? 'red' : 'green' ?> ; border-radius:10px; color: white; margin: auto; margin-top:10px; width:70px;   height:auto;">
-                                                                        {{ $post->prenium->status }}</span>
-                                                                @endif
-                                                                <div class="price">{{ $post->price }} Fcfa
                                                                 </div>
-                                                                <a href="{{ route('postDetails', ['id' => $post->id]) }}"
-                                                                    class="product-details-btn">Details</a>
+                                                                <div class="item-content">
+                                                                    <div class="title-ctg">
+                                                                        {{ $post->categories->categoryName }}</div>
+                                                                    <h3 class="short-title"><a
+                                                                            href="{{ route('postDetails', $post->id) }}">{{ $post->title }}</a>
+                                                                    </h3>
+                                                                    <h3 class="long-title"><a
+                                                                            href="{{ route('postDetails', $post->id) }}">{{ $post->title }}</a>
+                                                                    </h3>
+                                                                    <ul class="upload-info">
+                                                                        <li class="date"><i
+                                                                                class="fa fa-clock-o"
+                                                                                aria-hidden="true"></i>{{ $post->created_at->format('j F, Y') }}
+                                                                        </li>
+                                                                        <li class="place"><i
+                                                                                class="fa fa-map-marker"
+                                                                                aria-hidden="true"></i>{{ $post->user->sellerInformations->location->locationName }},
+                                                                            {{ $post->user->sellerInformations->district }}
+                                                                        </li>
+                                                                        <li class="tag-ctg"><i
+                                                                                class="fa fa-tag"
+                                                                                aria-hidden="true"></i>{{ $post->categories->categoryName }}
+                                                                        </li>
+                                                                    </ul>
+                                                                    <p>{{ substr($post->details, 0, 100) . '...' }}</p>
+                                                                    @if (isset($post->prenium->status))
+                                                                        <span
+                                                                            style="background-color:<?= $post->prenium->status == URGENT ? 'red' : 'green' ?> ; border-radius:10px; color: white; margin: auto; margin-top:10px; width:70px;   height:auto;">
+                                                                            {{ $post->prenium->status }}</span>
+                                                                    @endif
+                                                                    <div class="price">{{ $post->price }} Fcfa
+                                                                    </div>
+                                                                    <a href="{{ route('postDetails', ['id' => $post->id]) }}"
+                                                                        class="product-details-btn">Details</a>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                @endforeach
+                                                    @endforeach
+                                                @else 
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-12" style="color: red; text-align:center"> Liste vide.....</div>
+                                                @endif
                                             </div>
                                             <div>
                                                 {{ $posts->links() }}

@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Mail\AppMail;
 use App\Models\Posts;
-use App\Models\Location;
 use App\Models\Prenium;
+use App\Models\Location;
 use App\Models\Categories;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\CategoriesController;
-use App\Mail\AppMail;
 
 class AppController extends Controller
 {
@@ -57,12 +58,18 @@ class AppController extends Controller
     }
     public function saveEmailForBestOffers(Request $request)
     {
-        $request->validate([
-            "email" => ["required"]
-        ]);
-       $email = $request->email;
-       file_put_contents('emails_bestOffers.txt', $email);
-       return redirect('')->with('message', 'Your emails has been save');
+        try {
+            $request->validate([
+                "email" => ["required"]
+            ]);
+            $email = $request->email;
+            file_put_contents('emails_bestOffers.txt', $email);
+            return redirect('')->with('message', 'Votre email à été enregistrés avec success');
+        } catch (\Throwable $th) {
+            return redirect('')->with('message', 'Une erreur est survenue veuillez reesayer plus tard');
+        }
+        
+      
     }
     public function admin()
     {
@@ -70,8 +77,32 @@ class AppController extends Controller
     }
     public function send_message()
     {
-        Mail::to('yvanjordannguetse@yahoo.fr')->send(new AppMail());
-        return back()->with('message', 'message send');
+        try {
+            Mail::to('yvanjordannguetse@yahoo.fr')->send(new AppMail());
+            return back()->with('message', 'message envoyer');
+        } catch (\Throwable $th) {
+            return back()->with('message', 'Une erreur est survenue veuillez reesayer plustard');
+        }
+        
+    }
+    public function verification()
+    {
+        $prenium  = Prenium::all();
+        foreach ($prenium as $key => $item) {
+            if ($item->validity <  now()) {
+                $item->delete();
+            }
+        }
+
+        $users  = User::all();
+        foreach ($users as $key => $item) {
+            if ($item->validity_bonus_points < now()) {
+                $item->bonus_points = 0;
+            } elseif ($item->validity_points <  now()) {
+                $item->points = 0;
+            }
+            $item->save();
+        }
     }
    
 }

@@ -22,6 +22,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('bonus_points')->default(25);
+            $table->integer('points')->default(0);
+            $table->date('validity_points')->default(now());
+            $table->date('validity_bonus_points')->default(date_add(now(), date_interval_create_from_date_string('1 day')));
             $table->rememberToken();
             $table->timestamps();
         });

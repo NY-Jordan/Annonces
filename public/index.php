@@ -4,6 +4,9 @@ use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
+define('URGENT', 'urgent');
+define('TOP_OF_PAGE', 'Top of page');
+define('TOP_OF_PAGE_URGENT', 'Top of page + urgent');
 
 /*
 |--------------------------------------------------------------------------

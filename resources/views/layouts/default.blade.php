@@ -29,9 +29,9 @@
                         <div class="row no-gutters">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                                 <div class="top-bar-left">
-                                    <a href="{{ route('addPostPrenium') }}" class="cp-default-btn d-lg-none">Post Your Ad</a>
+                                    <a href="{{ route('addPostPrenium') }}" class="cp-default-btn d-lg-none">Poster</a>
                                     <p class="d-none d-lg-block">
-                                        <i class="fa fa-life-ring" aria-hidden="true"></i>Have any questions? 697843152 or yvanjordannguetse@yahoo.fr
+                                        <i class="fa fa-life-ring" aria-hidden="true"></i>Vous avez des questions ? 697843152 ou yvanjordannguetse@yahoo.fr
                                     </p>
                                 </div>
                             </div>
@@ -42,13 +42,13 @@
                                             @if (!auth()->check())
                                                 <button type="button" class="login-btn" data-toggle="modal"
                                                     data-target="#myModal">
-                                                    <i class="fa fa-lock" aria-hidden="true"></i>Login
+                                                    <i class="fa fa-lock" aria-hidden="true"></i>Se connecter
                                                 </button>
                                             @else
                                                 <form action="{{ route('logout') }}" method="post">
                                                     @csrf
                                                     <button type="submit" class="login-btn">
-                                                    <i class="fa fa-lock" aria-hidden="true"></i>Logout
+                                                    <i class="fa fa-lock" aria-hidden="true"></i>Se deconnecter
                                                     </button>
                                                 </form>
                                             @endif
@@ -60,8 +60,10 @@
                     </div>
                 </div>
                 @include('layouts/navigation')
+                
             </div>
         </header>
+        
         @yield('content')
         <footer>
             
@@ -81,26 +83,25 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <div class="title-default-bold mb-none">Login</div>
+                    <div class="title-default-bold mb-none">Se connecter</div>
                 </div>
                 <div class="modal-body">
                     <div class="login-form">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
-                            <label>Username or email address *</label>
+                            <label>Email  *</label>
                             <input placeholder="Name or E-mail" type="email" name="email" value="{{ old('email') }}"
                                 required autofocus />
-                            <label>Password *</label>
+                            <label>Mot de passe *</label>
                             <input type="password" placeholder="Password" type="password" name="password" required
                                 autocomplete="current-password" />
                             <div class="checkbox checkbox-primary">
                                 <input id="checkbox1" type="checkbox">
-                                <label for="checkbox1">Remember Me</label>
+                                <label for="checkbox1">Se souvenir de moi</label>
                             </div>
-                            <button class="default-big-btn" type="submit" value="Login">Login</button>
-                            <button class="default-big-btn form-cancel" data-dismiss="modal" type="submit" value="">Cancel</button>
-                            <label class="lost-password"><a href="{{ route('password.request') }}">Lost your
-                                    password?</a></label>
+                            <button class="default-big-btn" type="submit" value="Login">Se connecter</button>
+                            <button class="default-big-btn form-cancel" data-dismiss="modal" type="submit" value="">Annulé</button>
+                            <label class="lost-password"><a href="{{ route('password.request') }}">Vous avez oublier votre Mot de passe ?</a></label>
                         </form>
                     </div>
                 </div>
@@ -157,5 +158,6 @@
 <script src="{{ asset('js/validator.min.js') }} "></script>
 <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
-
+<script src="{{ asset('assets/js/payment.js') }}"></script>
+<script src="{{ asset('assets/js/details.js') }}"></script>
 </html>

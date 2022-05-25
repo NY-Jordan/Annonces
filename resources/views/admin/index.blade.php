@@ -169,7 +169,7 @@
                                                                                     {{ $data->status }}
                                                                                 </td>
                                                                                 <td>
-                                                                                    {{ $data->created_at }}
+                                                                                    {{ $data->created_at->format('d M Y') }}
                                                                                 </td>
                                                                                 <td>
                                                                                     @if ($data->status === 'not approved')

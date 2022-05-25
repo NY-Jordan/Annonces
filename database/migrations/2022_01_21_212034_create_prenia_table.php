@@ -17,6 +17,7 @@ class CreatePreniaTable extends Migration
             $table->id();
             $table->string('status')->default('');
             $table->foreignId('posts_id')->constrained()->onDelete('cascade');
+            $table->date('validity')->default(now());
             $table->timestamps();
         });
     }

@@ -26,11 +26,11 @@
                                             <li>
                                                 <div class="page-controls-sorting">
                                                     <button class="sorting-btn dropdown-toggle" type="button"
-                                                        data-toggle="dropdown" aria-expanded="false">Sort By<i
+                                                        data-toggle="dropdown" aria-expanded="false">Trier Par<i
                                                             class="fa fa-sort" aria-hidden="true"></i></button>
                                                     <div class="dropdown-menu">
                                                         <a class="dropdown-item" href="?q=created_at">Date</a>
-                                                        <a class="dropdown-item" href="?q=price">Best Sale</a>
+                                                        <a class="dropdown-item" href="?q=price">Meilleur prix</a>
                                                     </div>
                                                 </div>
                                             </li>
@@ -97,7 +97,7 @@
                                                     industry's standard dummy.</p>
                                                 <div class="price">{{ $post->price }} F cfa</div>
                                                 @if (isset($post->prenium->status))
-                                                <span style="background-color:<?= $post->prenium->status == 'Urgent' ? 'red' : 'green' ?> ; border-radius:10px; color: white; margin:auto; margin-top:10px; width:70px;   height:auto;">
+                                                <span style="background-color:<?= $post->prenium->status == URGENT ? 'red' : 'green' ?> ; border-radius:10px; color: white; margin:auto; margin-top:10px; width:70px;   height:auto;">
                                                     {{ $post->prenium->status }}
                                                 </span>
                                             @endif
@@ -138,8 +138,8 @@
                                     @foreach ($categories as $category)
                                         <li>
                                             <a href="{{ route('PostsByCategory', $category->id) }}"><img
-                                                    src="../img/product/ctg1.png" alt="category"
-                                                    class="img-fluid"><?= $category->categoryName ?><span>({{   $category->posts->count() }})</span></a>
+                                                    src="../img/product/ctg{{ $category->id }}.png" alt="category"
+                                                    class="img-fluid"><?= $category->categoryName ?><span>({{ $category->number_posts($category->id) }})</span></a>
                                         </li>
                                     @endforeach
                                 </ul>

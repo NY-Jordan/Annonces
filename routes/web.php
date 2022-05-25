@@ -32,9 +32,13 @@ Route::middleware(['auth'])->group(function ()
    Route::post('/account/updateInformations', [UserController::class, 'updateInformations'])->name('updateInformations');
    Route::get('/DeletePost/{id}', [PostsController::class, 'DeletePost'])->name('DeletePost');
    Route::get('/UpdatePost/{id}', [PostsController::class, 'UpdatePage'])->name('UpdatePost');
+   Route::get('/suscribe-prenium', [PostsController::class, 'suscribePrenium'])->name('suscribePrenium');
    Route::get('/Featured/{id}', [PostsController::class, 'featured'])->name('featured');
    Route::get('/Featured/{amount}/{status}', [PostsController::class, 'payment'])->name('payment');
    Route::get('/payement/status', [PostsController::class, 'status'])->name('payment.status');
+   Route::get('/getNumber', [PostsController::class, 'getNumber'])->name('getNumber');  
+   Route::get('account/payment-points/{amount}/{points}/{status}', [PostsController::class, 'paymentPoints'])->name('paymentPoints');
+   Route::get('payement/status/points', [PostsController::class, 'statusPoints'])->name('statusPoints');
 
    //admin
    Route::get('/account/admin', [AdminController::class, 'index'])->name('admin.index');
@@ -54,4 +58,5 @@ Route::get('{tag}/search', [PostsController::class, 'search'])->name('search');
 
 Route::get('/postsbycategory/{categorynameId}', [PostsController::class, 'showPostsByCategory'])->name('PostsByCategory');
 Route::get('/postsByLocation/{locationId}', [PostsController::class, 'showPostsByLocation'])->name('PostsByLocation');
+Route::get('/verification', [AppController::class, 'verification'])->name('Verification');
 require __DIR__.'/auth.php';

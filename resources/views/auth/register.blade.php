@@ -4,18 +4,27 @@
         <div class="container">
             <div class="breadcrumbs-area">
                 <ul>
-                    <li><a href="#">Home</a> -</li>
-                    <li class="active">SignUp Page</li>
+                    <li><a href="#">Acceuil</a> -</li>
+                    <li class="active">Page d'inscription</li>
                 </ul>
             </div>
         </div>
         <div class="container">
             <div class="row">
+                @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger mt-2">{{ $error }}</div>
+                    @endforeach
+                @endif
+                @if (session('message'))
+                    <div class="alert alert-danger dt-success-msg f12">{{ session('message') }}</div>
+                @endif
                 <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
                     <div class="gradient-wrapper mb--sm">
                         <div class="gradient-title">
-                            <h2>Creat An Account</h2>
+                            <h2>Creer un Compte</h2>
                         </div>
+
                         <div class="input-layout1 gradient-padding">
                             <form id="login-page-form" method="POST" action="{{ route('register') }}">
                                 @csrf
@@ -26,34 +35,34 @@
                                 @endif
                                 <div class="row">
                                     <div class="col-sm-3 col-12">
-                                        <label class="control-label" for="first-name">First Name <span>*</span></label>
+                                        <label class="control-label" for="first-name">Nom<span>*</span></label>
                                     </div>
                                     <div class="col-sm-9 col-12">
                                         <div class="form-group">
-                                            <input type="text" id="first_name" value='{{ old('first_name') }}' name="first_name" class="form-control"
-                                                placeholder="First Name">
+                                            <input type="text" id="first_name" value='{{ old('first_name') }}'
+                                                name="first_name" class="form-control" placeholder="First Name">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-3 col-12">
-                                        <label class="control-label" for="last-name">Last Name <span>*</span></label>
+                                        <label class="control-label" for="last-name">Pre-Nom<span>*</span></label>
                                     </div>
                                     <div class="col-sm-9 col-12">
                                         <div class="form-group">
-                                            <input type="text" id="last_name" value='{{ old('last_name') }}' name="last_name" class="form-control"
-                                                placeholder="Last Name">
+                                            <input type="text" id="last_name" value='{{ old('last_name') }}'
+                                                name="last_name" class="form-control" placeholder="Last Name">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-3 col-12">
-                                        <label class="control-label">Location<span> *</span></label>
+                                        <label class="control-label">Ville<span> *</span></label>
                                     </div>
                                     <div class="col-sm-9 col-12">
                                         <div class="form-group">
                                             <select id="location-name" name="location_id" class='select2 form-control '>
-                                                <option value="0">Select a Location</option>
+                                                <option value="0">Selectionner une Ville</option>
                                                 @foreach ($locations as $location)
                                                     <option value="{{ $location->id }}">
                                                         {{ $location->locationName }}</option>
@@ -64,7 +73,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-3 col-12">
-                                        <label class="control-label" for="district">district<span>*</span></label>
+                                        <label class="control-label" for="district">Quartier<span>*</span></label>
                                     </div>
                                     <div class="col-sm-9 col-12">
                                         <div class="form-group">
@@ -75,7 +84,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-3 col-12">
-                                        <label class="control-label possition-top" for="first-name">Gender
+                                        <label class="control-label possition-top" for="first-name">Genre
                                             <span>*</span></label>
                                     </div>
                                     <div class="col-sm-9 col-12">
@@ -87,14 +96,14 @@
                                             </div>
                                             <div class="radio radio-primary radio-inline">
                                                 <input type="radio" id="inlineRadio4" value="Female" name="gender[]">
-                                                <label for="inlineRadio4">Female</label>
+                                                <label for="inlineRadio4">Femelle</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-3 col-12">
-                                        <label class="control-label" for="phone">Mobile Phone 1<span>*</span></label>
+                                        <label class="control-label" for="phone">Telephone 1<span>*</span></label>
                                     </div>
                                     <div class="col-sm-9 col-12">
                                         <div class="form-group">
@@ -106,7 +115,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-3 col-12">
-                                        <label class="control-label" for="phone">Mobile Phone 2</label>
+                                        <label class="control-label" for="phone">Telephone 2</label>
                                     </div>
                                     <div class="col-sm-9 col-12">
                                         <div class="form-group">
@@ -118,7 +127,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-3 col-12">
-                                        <label class="control-label">About Yourself <span>*</span></label>
+                                        <label class="control-label">A propos de vous<span>*</span></label>
                                     </div>
                                     <div class="col-sm-9 col-12">
                                         <div class="form-group">
@@ -135,14 +144,14 @@
                                     </div>
                                     <div class="col-sm-9 col-12">
                                         <div class="form-group">
-                                            <input type="text" id="first-name2" value="{{ old('email') }}" name="email" class="form-control"
-                                                placeholder="Enter your e-mail here . . .">
+                                            <input type="text" id="first-name2" value="{{ old('email') }}" name="email"
+                                                class="form-control" placeholder="Enter your e-mail here . . .">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-3 col-12">
-                                        <label class="control-label" for="password">Password <span>*</span></label>
+                                        <label class="control-label" for="password">Mot de passe <span>*</span></label>
                                     </div>
                                     <div class="col-sm-9 col-12">
                                         <div class="form-group">
@@ -154,7 +163,7 @@
                                 <div class="row">
                                     <div class="ml-auto col-sm-9 col-12 ml-none--mb">
                                         <div class="form-group">
-                                            <button type="submit" class="cp-default-btn-sm">SignUp Now!</button>
+                                            <button type="submit" class="cp-default-btn-sm">S'enregistrer Maintenant !</button>
                                         </div>
                                     </div>
                                 </div>
@@ -162,7 +171,7 @@
                         </div>
                     </div>
                 </div>
-               
+
             </div>
         </div>
     </section>
