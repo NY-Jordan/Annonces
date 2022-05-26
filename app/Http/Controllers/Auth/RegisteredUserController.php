@@ -80,8 +80,6 @@ class RegisteredUserController extends Controller
         Auth::login($user);
         $sellerInformations->save();
          
-        return \redirect('');
-
-        \str_replace();
+        return \redirect('/account')->with('message', 'Félécitations, vous avez reussis la creation de votre compte ✔ vous avez réçu 25 points bonus comme cadeaux ');
     }
 }

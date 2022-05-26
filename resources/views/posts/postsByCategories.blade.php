@@ -1,3 +1,9 @@
+@include('meta::manager', [
+    'title'         =>  'NY-Annonces | '.$postByCategories[0]->categories->categoryName,
+    'description'   => 'Toute les annonces ',
+])
+
+
 @extends('../layouts/page')
 
 @section('page_content')

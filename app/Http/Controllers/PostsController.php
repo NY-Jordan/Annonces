@@ -286,7 +286,7 @@ class PostsController extends Controller
                 
             } else {
                 if (Auth::user()->bonus_points >= 5) {
-                    $user = User::find(1);
+                    $user = User::find(Auth::user()->id);
                     $user->bonus_points = $user->bonus_points - 5 ;
                     Show_phone::CreateNew(Auth::user()->id, $id, "Get contact of post ".Posts::find($id)->title);
                     $user->save();

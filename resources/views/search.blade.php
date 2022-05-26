@@ -1,3 +1,8 @@
+@include('meta::manager', [
+    'title'         => 'NY-Annonces | Result Search',
+    'description'   => 'Tout vos Annonce de la categorie  '.$result[0]->categories->categoryName,
+])
+
 @extends('../layouts/page')
 
 @section('page_content')

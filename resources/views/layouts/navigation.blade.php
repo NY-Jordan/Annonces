@@ -4,7 +4,7 @@
 
             <div class="col-lg-2 col-md-2 col-sm-3">
                 <div class="logo-area">
-                    <a href="{{ route('home') }}" class="img-fluid"><img src="{{ asset('img/logo.png') }}"
+                    <a href="{{ route('home') }}"   class="img-fluid"><img  src="{{ asset('img/logo.png') }}"
                             alt=""></a>
                 </div>
             </div>

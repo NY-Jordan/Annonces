@@ -1,3 +1,8 @@
+@include('meta::manager', [
+    'title'         => 'NY-Annonces | Compte',
+    'description'   => 'Annonces, revendez, publier, vos, annonces',
+])
+
 @extends('layouts/page')
 @section('page_content')
     <section class="s-space-bottom-full bg-accent-shadow-body">
@@ -162,9 +167,9 @@
                                                                     <div class="item-mask secondary-bg-box"><img
                                                                             src="{{ Storage::url($post->image->path) }}"
                                                                             alt="categories" class="img-fluid">
-                                                                        <a href="{{ route('featured', $post->id) }}">
+                                                                        <a href="{{ route('featured', $post->id) }}" data-toggle="popover" data-content="!!! Cliquez ici pour mettre votr annonce au premier plan ">
                                                                             <div class="trending-sign active"
-                                                                                data-tips="Featured">
+                                                                                data-tips="Featured"  >
                                                                                 <i class="fa fa-bolt"
                                                                                     aria-hidden="true"></i>
                                                                             </div>

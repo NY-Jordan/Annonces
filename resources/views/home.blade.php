@@ -1,5 +1,11 @@
+@include('meta::manager', [
+    'title'         => 'NY-Annonces',
+    'description'   => 'Annonces, revendez, publier, vos, annonces',
+])
 @extends('layouts/default')
+
 @section('content')
+
     <!-- Header Area End Here -->
     <!-- Featured Area Start Here -->
     <section class="bg-accent fixed-menu-mt featured-product-area item-pb">
