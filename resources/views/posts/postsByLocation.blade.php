@@ -1,5 +1,10 @@
 @extends('../layouts/page')
-
+@section('seo')
+    @include('meta::manager', [
+        'title'         =>  'NY-Annonces | '.$postByLocation[0]->user->sellerInformations->location->locationName,
+        'description'   => 'Toute les annonces de la Ville '.$postByLocation[0]->user->sellerInformations->location->locationName,
+    ]) 
+@endsection
 @section('page_content')
     <!-- Category Grid View Start Here -->
     <section class="s-space-bottom-full bg-accent-shadow-body">

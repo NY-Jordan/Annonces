@@ -34,8 +34,8 @@
                                                         </a>
                                                     </li>
                                                 @else
-                                                    <li><a data-toggle="modal" data-target="#myModal"
-                                                            href="index.html">se connecter</a></li>
+                                                    <li><a data-toggle="modal" data-target="#login"
+                                                            href="#">se connecter</a></li>
                                                     <li><a href="{{ route('register') }}">s'inscrire</a></li>
                                                 @endif
                                                 <li><a href="{{ route('addPostPrenium') }}">Poster une annonce</a>

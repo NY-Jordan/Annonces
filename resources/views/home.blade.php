@@ -1,9 +1,12 @@
-@include('meta::manager', [
-    'title'         => 'NY-Annonces',
-    'description'   => 'Annonces, revendez, publier, vos, annonces',
-])
+
 @extends('layouts/default')
 
+@section('seo')
+    @include('meta::manager', [
+        'title'         => 'NY-Annonces',
+        'description'   => 'Annonces, revendez, publier, vos, annonces',
+    ])
+@endsection
 @section('content')
 
     <!-- Header Area End Here -->

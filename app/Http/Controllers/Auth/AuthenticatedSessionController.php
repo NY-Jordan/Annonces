@@ -33,7 +33,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
         if (Auth::user()->status_connection === 'block') {
             $this->destroy($request);
-            return redirect('/')->with('message', 'your account is block');
+            return redirect('/')->with('message', 'votre compte à été bloquer ✖ pour une raison particulière, veuillez contacter un administration pour plus de detail');
 
         }
         return redirect('/account');

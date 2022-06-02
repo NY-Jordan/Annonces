@@ -50,11 +50,39 @@ function getNumber(){
      });
  })();
 
+ function verification_email(){
+    email = $('#verificationEmail').val();
+     $.ajax({
+         type: 'get',
+         url: '/forgot-password',
+         datatype: 'json',
+         success: function (json) {      
+             console.log('reussis');
+             
+ 
+         },
+         complete: function () {
+             
+         },
+         error: function (jqXHR, textStatus, errorThrown) {
+             console.log('echec');
+         }
+     });
+ }
+
 $(document).on('click','#getNumber',function (e) {
     document.querySelector("#getNumber").setAttribute("disabled", "");
     document.querySelector("#getNumberCancel").setAttribute("disabled", "");
     getNumber();
     
+});
+$(document).on('click','#show-f-password',function (e) {
+    $('#login').modal('hide')
+    $('#f-password').modal('show')
+}); 
+
+$(document).on('click','#v-password',function (e) {
+    verification_email();
 });
 
 

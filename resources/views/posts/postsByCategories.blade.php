@@ -1,11 +1,10 @@
-@include('meta::manager', [
-    'title'         =>  'NY-Annonces | '.$postByCategories[0]->categories->categoryName,
-    'description'   => 'Toute les annonces ',
-])
-
-
 @extends('../layouts/page')
-
+@section('seo')
+    @include('meta::manager', [
+        'title'         =>  'NY-Annonces | '.$postByCategories[0]->categories->categoryName,
+        'description'   => 'Toute les annonces de la catagorie '.$postByCategories[0]->categories->categoryName,
+    ])
+@endsection
 @section('page_content')
     <!-- Category Grid View Start Here -->
     <section class="s-space-bottom-full bg-accent-shadow-body">

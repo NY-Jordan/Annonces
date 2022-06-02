@@ -253,9 +253,6 @@ class PostsController extends Controller
         
         $locations = Location::getAllLocations();
         $post = Posts::where('id', $id)->first();
-        if ($request->user()->cannot('delete', $post)) {
-            abort('401');
-        }
         if (!$request->user()->can('update', $post)) {
             abort(403);
         }
@@ -411,7 +408,7 @@ class PostsController extends Controller
     public function payment($amount, $status, Request $request)
     {
         try {
-            $trueAmount =  (isset($amount) && !empty($amount)) ? $amount : $request->amount;
+            $trueAmount =  (isset($amount) && !empty($amount)) ? $amount : $request->forfait;
             $trueStatus =  (isset($status) && !empty($status)) ? $status : $request->status;
             $request_token = Http::post('https://demo.campay.net/api/token/', [
                 "username" =>  "vaGVIwXzgNErXOL5LxE-Voyjp3fjJumS22Jn4HobQlZrsCrh1fsTG611Y43FFVvwxQIAS-3q-9McyzOCirIivg",

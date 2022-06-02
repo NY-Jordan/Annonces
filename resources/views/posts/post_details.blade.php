@@ -1,11 +1,11 @@
-@include('meta::manager', [
-    'title'         =>  $post->title.' | NY-Annonces ',
-    'description'   => $k = strlen($post->details) > 20 ? substr($post->details, 0, 20) : $post->details
-])
-
-
 @extends('../layouts/page')
 
+@section('seo')
+    @include('meta::manager', [
+        'title'         =>  $post->title.' | NY-Annonces',
+        'description'   => $k = strlen($post->details) > 20 ? substr($post->details, 0, 20) : $post->details
+    ])
+@endsection
 @section('page_content')
     <section class="s-space-bottom-full bg-accent-shadow-body">
         <div class="container">

@@ -1,9 +1,15 @@
-@include('meta::manager', [
-    'title'         => 'NY-Annonces | Result Search',
-    'description'   => 'Tout vos Annonce de la categorie  '.$result[0]->categories->categoryName,
-])
+
 
 @extends('../layouts/page')
+
+@section('seo')
+
+@include('meta::manager', [
+    'title'         => 'NY-Annonces | Resultat de la recherche '.{{ $KeyWord }},
+    'description'   => 'Resultat de la recherche '.{{ $KeyWord }},
+])
+
+@endsection
 
 @section('page_content')
     <!-- Category Grid View Start Here -->

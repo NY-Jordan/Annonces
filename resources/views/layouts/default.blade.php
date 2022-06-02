@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    @yield('seo')
 </head>
 
 <body>
@@ -41,7 +42,7 @@
                                         <li>
                                             @if (!auth()->check())
                                                 <button type="button" class="login-btn" data-toggle="modal"
-                                                    data-target="#myModal">
+                                                    data-target="#login">
                                                     <i class="fa fa-lock" aria-hidden="true"></i>Se connecter
                                                 </button>
                                             @else
@@ -78,7 +79,7 @@
             </div>
         </footer>
     </div>
-    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal fade" id="login" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -101,7 +102,29 @@
                             </div>
                             <button class="default-big-btn" type="submit" value="Login">Se connecter</button>
                             <button class="default-big-btn form-cancel" data-dismiss="modal" type="submit" value="">Annulé</button>
-                            <label class="lost-password"><a href="{{ route('password.request') }}">Vous avez oublier votre Mot de passe ?</a></label>
+                            <label class="lost-password"><a href="#" id="show-f-password">Vous avez oublier votre Mot de passe ?</a></label>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="f-password" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="title-default-bold mb-none">Mot de passe Oublier</div>
+                </div>
+                <div class="modal-body">
+                    <div class="login-form">
+                        <form method="POST" action="">
+                            @csrf
+                            <label>Entrez vote Email  *</label>
+                            <input placeholder="Name or E-mail" type="email" name="verificationEmail" value="{{ old('email') }}"
+                                required autofocus />
+                            </div>
+                            <button class="default-big-btn" type="submit" id="v-password" value="Login">Continuer</button>
                         </form>
                     </div>
                 </div>
@@ -159,5 +182,5 @@
 <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 <script src="{{ asset('assets/js/payment.js') }}"></script>
-<script src="{{ asset('assets/js/details.js') }}"></script>
+<script src="{{ asset('assets/js/app.js') }}"></script>
 </html>

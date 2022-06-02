@@ -1,9 +1,12 @@
-@include('meta::manager', [
-    'title'         => 'NY-Annonces | Compte',
-    'description'   => 'Annonces, revendez, publier, vos, annonces',
-])
 
 @extends('layouts/page')
+
+@section('seo')
+    @include('meta::manager', [
+        'title'         => 'NY-Annonces | Compte',
+        'description'   => 'Annonces, revendez, publier, vos, annonces',
+    ])
+@endsection
 @section('page_content')
     <section class="s-space-bottom-full bg-accent-shadow-body">
         <div class="container">
