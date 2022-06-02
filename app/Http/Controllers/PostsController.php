@@ -400,9 +400,8 @@ class PostsController extends Controller
     } 
     public function suscribePrenium(Request $request)
     {
-        
-        $status = $request->forfait;
-        $amount = $request->urgent;
+        $amount = $request->forfait;
+        $status = $request->status;
         return $this->payment((int)$amount, $status, $request);
     }
     public function payment($amount, $status, Request $request)
@@ -465,6 +464,7 @@ class PostsController extends Controller
             $prenium =  new Prenium();
             $prenium->posts_id =  $post->id;
             $prenium->status =  $status[0];
+            $prenium->posts_id
             
             
             if ($status === URGENT) {
@@ -483,10 +483,11 @@ class PostsController extends Controller
             $payment->prenium_id = $prenium->id;
             $payment->montant = $response->json()['amount'];
             $payment->user_id = Auth::user()->id;
-            $user = User::where('id', Auth::user())->first();
-            $user->bonus_points += 15;
-            $user->save(); 
             $payment->save();
+            $user = User::where('id', $payment->user_id)->first();
+            $user->bonus_points = $user->bonus_points + 15;
+            $user->save(); 
+            
             $request->session()->forget('status');
             $request->session()->forget('post_id');
             return redirect()->route('postDetails', $post->id)->with('message', 'your ad has been brought to the foreground successfully');
