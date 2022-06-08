@@ -464,7 +464,7 @@ class PostsController extends Controller
             $prenium =  new Prenium();
             $prenium->posts_id =  $post->id;
             $prenium->status =  $status[0];
-            $prenium->posts_id
+            $prenium->posts_id;
             
             
             if ($status === URGENT) {

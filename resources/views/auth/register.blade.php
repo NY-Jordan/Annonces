@@ -11,14 +11,7 @@
         </div>
         <div class="container">
             <div class="row">
-                @if ($errors->any())
-                    @foreach ($errors->all() as $error)
-                        <div class="alert alert-danger mt-2">{{ $error }}</div>
-                    @endforeach
-                @endif
-                @if (session('message'))
-                    <div class="alert alert-danger dt-success-msg f12">{{ session('message') }}</div>
-                @endif
+               
                 <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
                     <div class="gradient-wrapper mb--sm">
                         <div class="gradient-title">

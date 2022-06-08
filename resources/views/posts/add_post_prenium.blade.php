@@ -96,7 +96,9 @@
                                                     class="textarea form-control" name="details" id="description" rows="4"
                                                     cols="20" data-error="Message field is required"
                                                     required>{{ old('details') }}</textarea>
+                                                    <div id="info_description"></div>
                                             </div>
+                                            
                                         </div>
                                     </div>
                                     <div class="row">

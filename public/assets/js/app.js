@@ -85,5 +85,9 @@ $(document).on('click','#v-password',function (e) {
     verification_email();
 });
 
+$(document).on('change','#description',function (e) {
+    console.log('yauch');
+    document.querySelector("#info_description").innerHTML('<span style="color:red;">eviter de mettre votre téléphone ou email dans la description </span>')
+});
 
 

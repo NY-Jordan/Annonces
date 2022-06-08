@@ -262,7 +262,7 @@
                     <div class="pricing-box bg-box">
                         <div class="plan-title">Annonce Premium</div>
                         <div class="price">
-                            <span class="currency">F CFA</span>5000
+                            <span class="currency">F CFA</span>2500
                             <span class="duration">/ par mois</span>
                         </div>
                         <h3 class="title-bold-dark size-xl">Publication d'annonces en vedette</h3>

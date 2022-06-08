@@ -48,11 +48,15 @@
     <div class="container">
         @if ($errors->any())
             @foreach ($errors->all() as $error)
-                <div class="alert alert-success mt-2">{{ $error }}</div>
+                <div class="alert alert-success mt-2" > <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>{{ $error }}</div>
             @endforeach
         @endif
         @if (session('message'))
-            <div class="alert alert-success dt-success-msg f12">{{ session('message') }}</div>
+            <div class="alert alert-success dt-success-msg f12" > <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button> {{ session('message') }}</div>
         @endif
     </div>
 
