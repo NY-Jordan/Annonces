@@ -1,0 +1,35 @@
+version: "3"
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: nyan-nginx
+    restart: unless-stopped
+    ports:
+      - 8001:80
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+  app:
+    image: php:fpm-alpine
+    container_name: nyan-app
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: docker/php/local/Dockerfile
+      args:
+        user: admin
+        uid: 1000
+    volumes:
+      - ./:/var/www
+  db:
+    image: mysql:8.0
+    container_name: nyan-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: local
+      SERVICE_NAME: mysql
+      
