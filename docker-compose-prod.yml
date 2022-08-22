@@ -10,7 +10,7 @@ services:
       - ./:/var/www
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
     networks:
-      - nyan:
+      - nyan
   app:
     image: php:fpm-alpine
     container_name: nyan-app
@@ -28,6 +28,6 @@ services:
       - APP_DEBUG=false
       - APP_ENV=production
     networks:
-      - nyan:
+      - nyan
   nyan:
     driver: bridge
