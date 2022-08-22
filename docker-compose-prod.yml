@@ -15,7 +15,7 @@ services:
     restart: unless-stopped
     build:
       context: .
-      dockerfile: docker/php/local/Dockerfile
+      dockerfile: docker/php/production/Dockerfile
       args:
         user: admin
         uid: 1000
