@@ -9,7 +9,8 @@ services:
     volumes:
       - ./:/var/www
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
-    network_mode: bridge
+    networks:
+      - nyan:
   app:
     image: php:fpm-alpine
     container_name: nyan-app
@@ -26,4 +27,7 @@ services:
       - APP_NAME=NyAnnonce
       - APP_DEBUG=false
       - APP_ENV=production
-    network_mode: bridge
+    networks:
+      - nyan:
+  nyan:
+    driver: bridge
