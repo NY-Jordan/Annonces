@@ -21,7 +21,7 @@ services:
         uid: 1000
     volumes:
       - ./:/var/www
-    env:
+    environment:
       - APP_NAME: NyAnnonce
       - APP_DEBUG: false
       - APP_ENV: production
