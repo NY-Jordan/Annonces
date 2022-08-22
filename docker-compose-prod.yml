@@ -29,5 +29,6 @@ services:
       - APP_ENV=production
     networks:
       - nyan
+networks:
   nyan:
     driver: bridge
