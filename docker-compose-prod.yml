@@ -22,6 +22,6 @@ services:
     volumes:
       - ./:/var/www
     environment:
-      - APP_NAME: NyAnnonce
-      - APP_DEBUG: false
-      - APP_ENV: production
+      - APP_NAME=NyAnnonce
+      - APP_DEBUG=false
+      - APP_ENV=production
