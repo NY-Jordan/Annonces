@@ -23,5 +23,5 @@ services:
       - ./:/var/www
     env:
       - APP_NAME: NyAnnonce
-      - APP_DEBUG: true
+      - APP_DEBUG: false
       - APP_ENV: production
