@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\CategoriesController;
 
@@ -149,34 +150,40 @@ class PostsController extends Controller
         ]);
     }
     
-    public function showPostsByCategory(int $categorynameId, Request $request)
+    public function showPostsByCategory(string $categorynameId, Request $request)
     {
+        $categorynameId = Crypt::decrypt($categorynameId); 
         $posts = new Posts;
         $locations = Location::getAllLocations();
         $postByCategories = Posts::orderBy($request->q, $posts->where('category_id', $categorynameId));      
         $postsByPages  = 7;
         $pages =   ceil($postByCategories->count() / $postsByPages);        
-        $categories  = Categories::showCategories();        
+        $categories  = Categories::showCategories();       
+        $categorie =   Categories::find($categorynameId);
         return view('posts/postsByCategories', [
             'postByCategories' => $postByCategories,
             'categories' => $categories,
             'pages' => $pages,
-            'locations' =>  $locations
+            'locations' =>  $locations,
+            'categorie' => $categorie
         ]);
     }
 
-    public function showPostsByLocation(int $locationId, Request $request)
+    public function showPostsByLocation(string $locationId, Request $request)
     {
+        $locationId = Crypt::decrypt($locationId); 
         $ByLocation = Posts::with('user.sellerInformations.location')->whereHas('user.sellerInformations.location',  function  ($q)  Use ($locationId) {
             $q->where('id',  $locationId);
         });       
         $postByLocation = Posts::orderBy($request->q, $ByLocation);  
         $locations = Location::getAllLocations();   
         $categories  = Categories::showCategories();
+        $location = Location::find($locationId);
         return view('posts/postsByLocation', [
             'postByLocation' => $postByLocation,
             'categories' => $categories,
-            'locations' =>  $locations
+            'locations' =>  $locations,
+            'location' =>  $location
         ]);
     }
 

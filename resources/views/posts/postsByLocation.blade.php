@@ -1,8 +1,8 @@
 @extends('../layouts/page')
 @section('seo')
     @include('meta::manager', [
-        'title'         =>  'NY-Annonces | '.$postByLocation[0]->user->sellerInformations->location->locationName,
-        'description'   => 'Toute les annonces de la Ville '.$postByLocation[0]->user->sellerInformations->location->locationName,
+        'title'         =>  'NY-Annonces | '. $location->locationName,
+        'description'   => 'Toute les annonces de la Ville '. $location->locationName,
     ]) 
 @endsection
 @section('page_content')
@@ -141,11 +141,11 @@
                             <ul class="sidebar-category-list">
                                 <ul class="sidebar-category-list">
                                     @foreach ($categories as $category)
-                                        <li>
-                                            <a href="{{ route('PostsByCategory', $category->id) }}"><img
-                                                    src="../img/product/ctg{{ $category->id }}.png" alt="category"
-                                                    class="img-fluid"><?= $category->categoryName ?><span>({{ $category->number_posts($category->id) }})</span></a>
-                                        </li>
+                                    <li>
+                                        <a href="{{ route('PostsByCategory',  Crypt::encrypt($category->id)) }}"><img
+                                                src="../img/product/ctg{{ $category->id }}.png" alt="category"
+                                                class="img-fluid"><?= $category->categoryName ?><span>({{ $category->number_posts($category->id) }})</span></a>
+                                    </li>
                                     @endforeach
                                 </ul>
                             </ul>
@@ -158,7 +158,7 @@
                             </div>
                             <ul class="sidebar-loacation-list">
                                 @foreach ($locations as $location)
-                                    <li><a href="{{ $location->id }}">{{ $location->locationName }}</a></li>
+                                    <li><a href="{{ route('PostsByLocation', Crypt::encrypt($location->id)) }}">{{ $location->locationName }}</a></li>
                                 @endforeach
                             </ul>
                         </div>

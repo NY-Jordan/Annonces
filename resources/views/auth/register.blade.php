@@ -1,4 +1,10 @@
 @extends('../layouts/page')
+@section('seo')
+    @include('meta::manager', [
+        'title'   => 'NY-Annonces | Register',
+        'description'   => 'Annonces, revendez, publier, vos, annonces',
+    ])
+@endsection
 @section('page_content');
     <section class="s-space-bottom-full bg-accent-shadow-body">
         <div class="container">

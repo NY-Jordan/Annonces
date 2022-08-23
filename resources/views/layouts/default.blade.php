@@ -31,7 +31,7 @@
                                 <div class="top-bar-left">
                                     <a href="{{ route('addPostPrenium') }}" class="cp-default-btn d-lg-none">Poster</a>
                                     <p class="d-none d-lg-block">
-                                        <i class="fa fa-life-ring" aria-hidden="true"></i>Vous avez des questions ? 697843152 ou yvanjordannguetse@yahoo.fr
+                                        <i class="fa fa-life-ring" aria-hidden="true"></i>Vous avez des questions ? 692409530 ou nyannonces@yahoo.fr
                                     </p>
                                 </div>
                             </div>

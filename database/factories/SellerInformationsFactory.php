@@ -24,12 +24,12 @@ class SellerInformationsFactory extends Factory
     public function definition()
     {
         return [
-            'mobile_phone1' => $this->faker->numerify('6########'),
+            'mobile_phone1' => 681328791,
             'gender' => 'Masculin',
             'district' => $this->faker->word,
-            'sellerEmail' => $this->faker->email(),
+            'sellerEmail' => 'yvanjordannguetse@yahoo.fr',
             'about_yourself' => $this->faker->paragraph(2),
-            'user_id' => User::factory(),
+            'user_id' => 1,
             'location_id' => random_int(1,10)
         ];
     }

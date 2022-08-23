@@ -25,6 +25,7 @@ Route::post('/contact/message', [AppController::class, 'send_message'])->name('s
 
 Route::middleware(['auth'])->group(function ()
 {
+   
    Route::get('/add_prenium_post', [PostsController::class, 'add_prenium_post'])->name('addPostPrenium');
    Route::get('/add_free_Post', [PostsController::class, 'add_free_Post'])->name('addPostFree');
    Route::post('/sendpost', [PostsController::class, 'sendPost'])->name('sendPost');
@@ -52,11 +53,12 @@ Route::middleware(['auth'])->group(function ()
    Route::get('account/remove-prenium/{id}', [AdminController::class, 'removePrenium'])->name('admin.remove_prenium');
 
 });
+$token  = rand(1, 100);
 Route::get('post/{id}/details', [PostsController::class, 'postDetails'])->name('postDetails')->whereNumber('id');
 Route::get('{tag}/search', [PostsController::class, 'search'])->name('search');
 
 
-Route::get('/postsbycategory/{categorynameId}', [PostsController::class, 'showPostsByCategory'])->name('PostsByCategory');
-Route::get('/postsByLocation/{locationId}', [PostsController::class, 'showPostsByLocation'])->name('PostsByLocation');
+Route::get('/postsbycategory/{categorynameId}', [PostsController::class, 'showPostsByCategory'])->whereAlphaNumeric('categorynameId')->name('PostsByCategory');
+Route::get('/postsByLocation/{locationId}', [PostsController::class, 'showPostsByLocation'])->whereAlphaNumeric('locationId')->name('PostsByLocation');
 Route::get('/verification', [AppController::class, 'verification'])->name('Verification');
 require __DIR__.'/auth.php';

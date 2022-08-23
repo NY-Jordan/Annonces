@@ -128,7 +128,7 @@
                         <ul class="sidebar-category-list">
                             @foreach ($categories as $category)
                                 <li>
-                                    <a href="{{ route('PostsByCategory', $category->id) }}"><img
+                                    <a href="{{ route('PostsByCategory',  Crypt::encrypt($category->id)) }}"><img
                                             src="../img/product/ctg{{ $category->id }}.png" alt="category"
                                             class="img-fluid"><?= $category->categoryName ?><span>({{ $category->number_posts($category->id) }})</span></a>
                                 </li>

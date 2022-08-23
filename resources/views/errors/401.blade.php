@@ -1,4 +1,10 @@
 @extends('layouts/default')
+@section('seo')
+    @include('meta::manager', [
+        'title'         =>  'NY-Annonces | 404',
+        'description'   => '404',
+    ]) 
+@endsection
 @section('content')
     <!-- Header Area End Here -->
     <!-- Featured Area Start Here -->
