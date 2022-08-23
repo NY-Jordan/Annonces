@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @yield('seo')
+    <meta name="google-site-verification" content="Bm6O2ZI4i1xvQiMVql_94l_U-iNzqey-ktXDe3XHJ58" />
 </head>
 
 <body>
