@@ -340,7 +340,7 @@ class PostsController extends Controller
                 "amount" => (int)$trueAmount,
                 "external_reference" => $reference,
                 "currency" => "XAF",
-                "redirect_url" => "http://localhost:8000/payement/status/points"
+                "redirect_url" => "https://nyannonce/payement/status/points"
             ]);   
 
             if ($response->status() === 400) {
@@ -431,7 +431,11 @@ class PostsController extends Controller
                 "amount" => (int)$trueAmount,
                 "external_reference" => $reference,
                 "currency" => "XAF",
+<<<<<<< HEAD
                 "redirect_url" => "https://nyannonce.com/payement/status"
+=======
+                "redirect_url" => "https://nyannonce/payement/status"
+>>>>>>> 9bd774509d7e7924991230d0771837b9c424e21a
             ]);   
 
             if ($response->status() === 400) {
@@ -503,7 +507,7 @@ class PostsController extends Controller
             return redirect("/account")->with('message', "check the amount of your balance  and try again");
         }
         } catch (\Throwable $th) {
-            dd($th);
+            return back()->with('message', "check the amount of your balance  and try again");
         }
         
     } 

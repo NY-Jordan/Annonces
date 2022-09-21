@@ -21,7 +21,7 @@
                     <form action="{{ route('search', 'simple') }}" method="get">
                         <div class="input-group stylish-input-group">
                             <input type="text" name="KeyWord" class="form-control"
-                                placeholder="qu'es ce que vous cherchez ? . . .">
+                                placeholder="qu'est ce que vous cherchez ? . . .">
                             <span class="input-group-addon">
                                 <button type="submit">
                                     <span class="fa fa-search"></span>
@@ -38,7 +38,7 @@
                         <div class="alert alert-success dt-success-msg f12">{{ session('message') }}</div>
                     @endif
                     <div class="section-title-left-dark title-bar mt-20 mb-40">
-                        <h2>Prenium Post
+                        <h2>Premium Post
                         </h2>
                     </div>
                     @if (!empty($prenium))

@@ -15,28 +15,28 @@ class LocationSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('Locations')->insert([
+        DB::table('locations')->insert([
             'locationName' => 'Yaoundé',
         ]);
-        DB::table('Locations')->insert([
+        DB::table('locations')->insert([
             'locationName' => 'Douala',
         ]);
-        DB::table('Locations')->insert([
+        DB::table('locations')->insert([
             'locationName' => 'Kribi',
         ]);
-        DB::table('Locations')->insert([
+        DB::table('locations')->insert([
             'locationName' => 'Bafoussam',
         ]);
-        DB::table('Locations')->insert([
+        DB::table('locations')->insert([
             'locationName' => 'Bertoua',
         ]);
-        DB::table('Locations')->insert([
+        DB::table('locations')->insert([
             'locationName' => 'Garoua',
         ]);
-        DB::table('Locations')->insert([
+        DB::table('locations')->insert([
             'locationName' => 'Limbé',
         ]);
-        DB::table('Locations')->insert([
+        DB::table('locations')->insert([
             'locationName' => 'Nkongsamba',
         ]);
     }

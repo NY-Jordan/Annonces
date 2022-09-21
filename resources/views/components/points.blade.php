@@ -1,3 +1,4 @@
+@if (Auth::check())  
 <div class="modal fade" id="points"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content" style="width: 700px;">
@@ -84,3 +85,4 @@
       </div>
     </div>
   </div>
+  @endif

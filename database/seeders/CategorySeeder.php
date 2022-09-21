@@ -15,28 +15,28 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('Categories')->insert([
+        DB::table('categories')->insert([
             'categoryName' => 'Électroniques',
         ]);
-        DB::table('Categories')->insert([
+        DB::table('categories')->insert([
             'categoryName' => 'Accessoires de mode',
         ]);
-        DB::table('Categories')->insert([
+        DB::table('categories')->insert([
             'categoryName' => 'Véhicules - Motos',
         ]);
-        DB::table('Categories')->insert([
+        DB::table('categories')->insert([
             'categoryName' => 'Loisirs - Communauté',
         ]);
-        DB::table('Categories')->insert([
+        DB::table('categories')->insert([
             'categoryName' => 'Office space',
         ]);
-        DB::table('Categories')->insert([
+        DB::table('categories')->insert([
             'categoryName' => 'Emploi - Recrutement',
         ]);
-        DB::table('Categories')->insert([
+        DB::table('categories')->insert([
             'categoryName' => 'Électroménager- Maison',
         ]);
-        DB::table('Categories')->insert([
+        DB::table('categories')->insert([
             'categoryName' => 'Autres offres d\'emploi',
         ]);
         

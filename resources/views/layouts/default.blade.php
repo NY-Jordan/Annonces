@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <meta name="google-site-verification" content="Bm6O2ZI4i1xvQiMVql_94l_U-iNzqey-ktXDe3XHJ58" />
     @yield('seo')
+    <meta name="google-site-verification" content="Bm6O2ZI4i1xvQiMVql_94l_U-iNzqey-ktXDe3XHJ58" />
 </head>
 
 <body>
@@ -166,6 +167,7 @@
         </div>
     </div>
 </body>
+@include('../components/points')
 <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
 <script src="{{ asset('js/popper.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
