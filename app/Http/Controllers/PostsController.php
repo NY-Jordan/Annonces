@@ -431,7 +431,7 @@ class PostsController extends Controller
                 "amount" => (int)$trueAmount,
                 "external_reference" => $reference,
                 "currency" => "XAF",
-                "redirect_url" => "http://localhost:8000/payement/status"
+                "redirect_url" => "https://nyannonce.com/payement/status"
             ]);   
 
             if ($response->status() === 400) {
@@ -471,7 +471,8 @@ class PostsController extends Controller
             $prenium =  new Prenium();
             $prenium->posts_id =  $post->id;
             $prenium->status =  $status[0];
-            $prenium->posts_id;
+            
+
             
             
             if ($status === URGENT) {

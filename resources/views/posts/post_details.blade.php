@@ -3,7 +3,7 @@
 @section('seo')
     @include('meta::manager', [
         'title'         =>  $post->title.' | NY-Annonces',
-        'description'   => $k = strlen($post->details) > 20 ? substr($post->details, 0, 20) : $post->details
+        'description'   =>  $post->details
     ])
 @endsection
 @section('page_content')

@@ -6,7 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../img/logo.ico">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <meta name="google-site-verification" content="Bm6O2ZI4i1xvQiMVql_94l_U-iNzqey-ktXDe3XHJ58" />
     @yield('seo')
 </head>
 

@@ -2,7 +2,7 @@
 @section('seo')
     @include('meta::manager', [
         'title'         =>  'NY-Annonces | '.$categorie->categoryName,
-        'description'   => 'Toute les annonces de la catagorie '.$categorie,
+        'description'   => 'Toute les annonces de la catagorie '.$categorie. 'au cameroun, les meilleurs offres du cameroun',
     ])
 @endsection
 @section('page_content')

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\CategoriesController;
+use App\Models\EmailBestOffers;
 
 class AppController extends Controller
 {
@@ -63,13 +64,13 @@ class AppController extends Controller
                 "email" => ["required"]
             ]);
             $email = $request->email;
-            file_put_contents('emails_bestOffers.txt', $email);
+            EmailBestOffers::create([
+                'email' => $email
+            ]);
             return redirect('')->with('message', 'Votre email à été enregistrés avec success');
         } catch (\Throwable $th) {
             return redirect('')->with('message', 'Une erreur est survenue veuillez reesayer plus tard');
         }
-        
-      
     }
     public function admin()
     {
@@ -87,9 +88,12 @@ class AppController extends Controller
     }
     public function verification()
     {
+        $date = date_add(now(), date_interval_create_from_date_string("5 day"));
+        dd($date);
         $prenium  = Prenium::all();
         foreach ($prenium as $key => $item) {
             if ($item->validity <  now()) {
+                dd('yvan');
                 $item->delete();
             }
         }

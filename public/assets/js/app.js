@@ -1,3 +1,20 @@
+function Validity(){
+    console.log('here');
+     $.ajax({
+         type: 'get',
+         url: '/verification',
+         datatype: 'json',
+         success: function (json) {      
+            console.log('verification terminé');
+         },
+         complete: function () {             
+         },
+         error: function (jqXHR, textStatus, errorThrown) {
+            console.log("echec de la verification");
+         }
+     });
+ };
+Validity();
 
 function getNumber(){
    id = $('#idPost').val();
@@ -16,8 +33,6 @@ function getNumber(){
                 document.querySelector("#getNumber").removeAttribute("disabled");
                 document.querySelector("#getNumberCancel").removeAttribute("disabled");
             }
-            
-
         },
         complete: function () {
             
@@ -32,24 +47,6 @@ function getNumber(){
     });
 }
 
-
-(function Validity(){
-    
-     $.ajax({
-         type: 'get',
-         url: '/verification',
-         datatype: 'json',
-         success: function (json) {      
-             console.log('verification terminé');
-         },
-         complete: function () {             
-         },
-         error: function (jqXHR, textStatus, errorThrown) {
-            console.log("echec de la verification");
-         }
-     });
- })();
-
  function verification_email(){
     email = $('#verificationEmail').val();
      $.ajax({
@@ -57,9 +54,7 @@ function getNumber(){
          url: '/forgot-password',
          datatype: 'json',
          success: function (json) {      
-             console.log('reussis');
-             
- 
+             console.log('reussis');         
          },
          complete: function () {
              

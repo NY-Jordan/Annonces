@@ -4,7 +4,8 @@
 @section('seo')
     @include('meta::manager', [
         'title'         => 'NY-Annonces | Compte',
-        'description'   => 'Annonces, revendez, publier, vos, annonces',
+        'description'   => 'Annonces, revendez, publier vos annonces, retrouvez les meilleurs offres du cameroun grâce à ny-annonce,
+            annonces du cameroun, les meilleurs offres du cameroun, electroniques, bijouterie, emploi, ny-annonces vous offre  le meilleurs',
     ])
 @endsection
 @section('page_content')

@@ -2,7 +2,7 @@
 @section('seo')
     @include('meta::manager', [
         'title'         =>  'NY-Annonces | '. $location->locationName,
-        'description'   => 'Toute les annonces de la Ville '. $location->locationName,
+        'description'   => 'Toute les annonces de la Ville '. $location->locationName. 'au cameroun, les meilleurs offres du cameroun',
     ]) 
 @endsection
 @section('page_content')
