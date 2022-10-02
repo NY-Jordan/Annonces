@@ -27,12 +27,12 @@
                                                                     type="submit">se deconnecter</button></a></li>
                                                         
                                                     </form>
-                                                    <li>
+                                                    {{-- <li>
                                                         <a href="#" data-toggle="modal" data-target="#points">
                                                             <button class="btn btn-link " data-toggle="modal" data-target="#points" style="color: aliceblue; height:30px; text-decoration:none; "
                                                                     type="submit">Mes Points</button>
                                                         </a>
-                                                    </li>
+                                                    </li> --}}
                                                 @else
                                                     <li><a data-toggle="modal" data-target="#login"
                                                             href="#">se connecter</a></li>

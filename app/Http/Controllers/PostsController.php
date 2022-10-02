@@ -431,11 +431,8 @@ class PostsController extends Controller
                 "amount" => (int)$trueAmount,
                 "external_reference" => $reference,
                 "currency" => "XAF",
-<<<<<<< HEAD
                 "redirect_url" => "https://nyannonce.com/payement/status"
-=======
-                "redirect_url" => "https://nyannonce/payement/status"
->>>>>>> 9bd774509d7e7924991230d0771837b9c424e21a
+
             ]);   
 
             if ($response->status() === 400) {

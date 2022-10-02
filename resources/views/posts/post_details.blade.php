@@ -2,8 +2,8 @@
 
 @section('seo')
     @include('meta::manager', [
-        'title'         =>  $post->title.' | NY-Annonces',
-        'description'   =>  $post->details
+        'title' => $post->title . ' | NY-Annonces',
+        'description' => $post->details,
     ])
 @endsection
 @section('page_content')
@@ -52,11 +52,10 @@
                                             data-r-Large-nav="true" data-r-Large-dots="false">
                                             @foreach ($imagesPost as $key => $image)
                                                 <li class="nav-item">
-                                                    <a  @if ($key === 0)  class="active" @endif href="#related{{ $key }}"
-                                                        data-toggle="tab" aria-expanded="false"><img
-                                                            alt="related{{ $key }}"
-                                                            src="{{ Storage::url($image->path) }}"
-                                                            class="img-fluid"></a>
+                                                    <a @if ($key === 0) class="active" @endif
+                                                        href="#related{{ $key }}" data-toggle="tab"
+                                                        aria-expanded="false"><img alt="related{{ $key }}"
+                                                            src="{{ Storage::url($image->path) }}" class="img-fluid"></a>
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -69,7 +68,7 @@
                                 </p>
                             </div>
 
-                            
+
                         </div>
                     </div>
                     <div class="gradient-wrapper item-mb">
@@ -86,7 +85,6 @@
                                 data-r-medium-dots="false" data-r-Large="3" data-r-Large-nav="true"
                                 data-r-Large-dots="false">
                                 @foreach ($recentFivePosts as $recentPost)
-
                                     <div class="product-box">
                                         <div class="item-mask-wrapper">
                                             <div class="item-mask secondary-bg-box"><img
@@ -114,20 +112,21 @@
                                                     href="{{ route('postDetails', ['id' => $recentPost->id]) }}">{{ $k = strlen($recentPost->title) > 10 ? substr($recentPost->title, 0, 10) . '...' : $recentPost->title }}</a>
                                             </h3>
                                             <h3 class="long-title"><a
-                                                    href="{{ route('postDetails', ['id' => $recentPost->id]) }}">{{ $k = strlen($recentPost->title) > 10 ? substr($recentPost->title, 0, 10) . '...' : $recentPost->title }}</a></h3>
+                                                    href="{{ route('postDetails', ['id' => $recentPost->id]) }}">{{ $k = strlen($recentPost->title) > 10 ? substr($recentPost->title, 0, 10) . '...' : $recentPost->title }}</a>
+                                            </h3>
                                             <ul class="upload-info">
-                                                <li class="date"><i class="fa fa-clock-o"
-                                                        aria-hidden="true"></i>07 Mar,
+                                                <li class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>07
+                                                    Mar,
                                                     2017
                                                 </li>
                                                 <li class="place"><i class="fa fa-map-marker"
                                                         aria-hidden="true"></i>{{ $recentPost->user->sellerInformations->location->locationName }},
-                                                        {{ $recentPost->user->sellerInformations->district }}</li>
+                                                    {{ $recentPost->user->sellerInformations->district }}</li>
                                                 <li class="tag-ctg"><i class="fa fa-tag"
                                                         aria-hidden="true"></i>{{ $recentPost->categories->categoryName }}
                                                 </li>
                                             </ul>
-                                            <p>{{ substr($recentPost->details, 0, 100).'...'  }}</p>
+                                            <p>{{ substr($recentPost->details, 0, 100) . '...' }}</p>
                                             <div class="price">{{ $recentPost->price }}</div>
                                             <a href="single-product-layout1.html" class="product-details-btn">Details</a>
                                         </div>
@@ -141,13 +140,14 @@
                             <div class="add-layout2-left d-flex align-items-center">
                                 <div>
                                     <h2>Vous avez quelques chose à vendre ?</h2>
-                                    <h3>Poster une Annonce sur  ny-annconces.com</h3>
+                                    <h3>Poster une Annonce sur ny-annconces.com</h3>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-5 col-md-12 col-sm-12 col-12">
                             <div class="add-layout2-right d-flex align-items-center justify-content-end mb--sm">
-                                <a href="{{ route('addPostPrenium') }}" class="cp-default-btn-sm-primary">Poster une Annonce Maintenant</a>
+                                <a href="{{ route('addPostPrenium') }}" class="cp-default-btn-sm-primary">Poster une
+                                    Annonce Maintenant</a>
                             </div>
                         </div>
                     </div>
@@ -164,7 +164,8 @@
                                         <img src="../../img/user/user1.png" alt="user" class="img-fluid pull-left">
                                         <div class="media-body">
                                             <span>Posté Par</span>
-                                            <h4 id=""> {{ $user_post[0]->first_name }} {{ $user_post[0]->last_name }}</h4>
+                                            <h4 id=""> {{ $user_post[0]->first_name }}
+                                                {{ $user_post[0]->last_name }}</h4>
                                         </div>
                                     </div>
                                 </li>
@@ -178,7 +179,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                
+
                                 <li>
                                     <div class="media">
                                         <img src="../../img/user/user5.png" alt="user" class="img-fluid pull-left">
@@ -188,30 +189,16 @@
                                         </div>
                                     </div>
                                 </li>
-                                @if (auth()->check())
-                                    @if (Auth::user()->id === $post->user_id || $see_phone)
-                                    <li>
-                                        <div class="media">
-                                            <img src="../../img/user/user3.png" alt="user" class="img-fluid pull-left">
-                                            <div class="media-body">
-                                                <span>Contact</span>
-                                                
-                                                <h4>{{ $user_post[0]->sellerInformations->mobile_phone1 }}</h4>
-                                            </div>
+                                <li>
+                                    <div class="media">
+                                        <img src="../../img/user/user3.png" alt="user" class="img-fluid pull-left">
+                                        <div class="media-body">
+                                            <span>Contact</span>
+                                            <h4>{{ $user_post[0]->sellerInformations->mobile_phone1 }}</h4>
                                         </div>
-                                    </li>
+                                    </div>
+                                </li>
 
-                                    @else
-                                        <li>
-                                            <h4><button class="btn btn-secondary" data-toggle="modal" data-target="#Validation_get_phone" >Obtenir le contact</button></h4>
-                                        </li>
-                                        <input type="hidden" name="" id='idPost' value="{{ $post->id }}"  >
-                                    @endif
-                                @else
-                                    <li>
-                                        <h4><button class="btn btn-secondary" data-toggle="modal" data-target="#Validation_get_phone" >Obtenir le contact</button></h4>
-                                    </li>
-                                @endif 
                                 @if (auth()->check())
                                     @if ($user->id === $post->user->id)
                                         <li>
@@ -229,7 +216,8 @@
 
                                                 <div class="media-body">
                                                     <span>Delete My Post</span>
-                                                    <h4 id="supp" value="{{ $post->id }}"><a class="navbar-item"
+                                                    <h4 id="supp" value="{{ $post->id }}"><a
+                                                            class="navbar-item"
                                                             href="{{ route('DeletePost', $post->id) }}">Supprimer</a></h4>
                                                 </div>
                                             </div>
@@ -244,59 +232,72 @@
         </div>
     </section>
 
-    
-    <div class="modal fade" id="Validation_get_phone" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Validation</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-               L'obtention du contact de l'annonce  <strong>{{ $post->title }}</strong> vous coûtera <strong>5 Points</strong>
-            </div>
-            <div class="modal-footer">
-              <button type="button" id="getNumberCancel" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-              <button type="button" id="getNumber" class="btn btn-primary">Confirmer</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="Validation_get_phone" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Info </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Validation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    L'obtention du contact de l'annonce <strong>{{ $post->title }}</strong> vous coûtera <strong>5
+                        Points</strong>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="getNumberCancel" class="btn btn-secondary"
+                        data-dismiss="modal">Annuler</button>
+                    <button type="button" id="getNumber" class="btn btn-primary">Confirmer</button>
+                </div>
             </div>
-            <div class="modal-body" id="bodyAlert">
-               
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
 
-      <div class="modal fade" id="pasConnecter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Echec de l'operation</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Info </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="bodyAlert">
+
+                </div>
             </div>
-            <div class="modal-body">
-               Echec de l'operation .. ✖   @if (!auth()->check())<br><p>Veuillez vous connecter ou vous creer votre compte <a href="{{ route("register") }}">ici</a> <br> <br> <strong>NB: Benéficiez de 25 points bonus à la creation de votre compte</strong> </p> @else <br> <p>Veuillez reesayer plus tard</p> @endif
-            </div>
-            <div class="modal-footer">
-              <button type="button" id="getNumberCancel" class="btn btn-secondary" data-dismiss="modal">Ok</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
+
+    <div class="modal fade" id="pasConnecter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Echec de l'operation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Echec de l'operation .. ✖ @if (!auth()->check())
+                        <br>
+                        <p>Veuillez vous connecter ou vous creer votre compte <a href="{{ route('register') }}">ici</a>
+                            <br> <br> <strong>NB: Benéficiez de 25 points bonus à la creation de votre compte</strong> </p>
+                    @else
+                        <br>
+                        <p>Veuillez reesayer plus tard</p>
+                    @endif
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="getNumberCancel" class="btn btn-secondary"
+                        data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
